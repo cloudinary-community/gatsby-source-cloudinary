@@ -15,9 +15,6 @@
   "author": "Ugonna William Imoh",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.18.0",
-    "cloudinary": "^1.11.0",
-    "node-fetch": "^2.2.0",
-    "query-string": "^6.2.0"
+    "cloudinary": "^1.11.0"
   }
 }
