@@ -3,6 +3,7 @@
   "version": "0.1.2",
   "description": "Gatsby source plugin to fetch files from Cloudinary into Gatsby.",
   "main": "gatsby-node.js",
+  "repository": "https://github.com/Chuloo/gatsby-source-cloudinary.git",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
