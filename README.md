@@ -34,6 +34,6 @@ Here are details of each query parameter as culled from cloudinary.com.
 * max_results - Optional. (Integer, default=10. maximum=500). Max number of resources to return.
 * tags - Optional (Boolean, default: false). If true, include the list of tag names assigned each resource.
 
-Obtain your cloudname, key and secret from your cloudinary console when you signup at http://cloudinary.com
+Obtain your cloudname, key and secret from your cloudinary console when you signup at https://cloudinary.com
 
 Feel free to create feature requests.... and PRs :)
