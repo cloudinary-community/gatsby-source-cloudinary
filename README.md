@@ -18,9 +18,10 @@ In your `gatsby-config.js` file, include the plugin like this:
     apiKey: 'xxxxxxxxxxxxxx',
     apiSecret: 'xxxxxxxxxxxxx',
     resourceType: 'image',
-    type: `<type Value>`,
-    maxResults: `<Max result>`,
-    tags:`<fetch image tags?>`
+    type: `type Value`,
+    maxResults: `Max result`,
+    tags:`fetch image tags?`,
+    prefix: `abc-xyz/`
     }
 }
 ```
