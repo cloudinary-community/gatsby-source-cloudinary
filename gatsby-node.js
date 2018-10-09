@@ -29,9 +29,17 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }, configOpt
 
         return nodeData
     }
+    const {resourceType, prefix, tags, maxResults, type} = configOptions
+    const queryParams ={
+        resource_type:resourceType ? resourceType: undefined, 
+        tags: tags ? tags: undefined,
+        max_results: maxResults? maxResults: undefined,
+        type: type ? type: undefined
+    }
+    console.log(queryParams)
 
     return (
-        cloudinary.v2.api.resources({resource_type:'video'},(error, result)=>{
+        cloudinary.v2.api.resources(queryParams,(error, result)=>{
             result.resources.forEach((mediaItem)=>{
                 const nodeData = processMedia(mediaItem)
                 createNode(nodeData)
