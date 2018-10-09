@@ -39,6 +39,6 @@ Here are details of each query parameter as culled from cloudinary.com.
 
 An example `prefix` value will is `gatsby-anime-videos/`. This will fetch only media files with public ids beginning with `gatsby-anime-videos/*`. Example: `gatsby-anime-videos/naruto.mp4`
 
-Obtain your cloudname, key and secret from your cloudinary console when you signup at https://cloudinary.com
+Obtain your cloudname, key and secret from your cloudinary console when you signup at [Cloudinary.com](https://cloudinary.com)
 
 Feel free to create feature requests.... and PRs :)
