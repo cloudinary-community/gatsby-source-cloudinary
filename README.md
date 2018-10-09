@@ -29,10 +29,15 @@ In your `gatsby-config.js` file, include the plugin like this:
 
 Here are details of each query parameter as culled from cloudinary.com.
 
-* resource_type - Optional (String, default: image). The type of file. Possible values: image, raw, video. Relevant as a parameter only when using the SDKs (the resource type is included in the endpoint URL for direct calls to the HTTP API). Note: Use the video resource type for all video resources as well as for audio files, such as .mp3.
-* type - Optional (String, default: all). The storage type: upload, private, authenticated, facebook, twitter, gplus, instagram_name, gravatar, youtube, hulu, vimeo, animoto, worldstarhiphop or dailymotion. Relevant as a parameter only when using the SDKs (the type is included in the endpoint URL for direct calls to the HTTP API).
-* max_results - Optional. (Integer, default=10. maximum=500). Max number of resources to return.
-* tags - Optional (Boolean, default: false). If true, include the list of tag names assigned each resource.
+* `resourceType` - Optional (String, default: image). The type of file. Possible values: image, raw, video. Relevant as a parameter only when using the SDKs (the resource type is included in the endpoint URL for direct calls to the HTTP API). Note: Use the video resource type for all video resources as well as for audio files, such as .mp3.
+* `type` - Optional (String, default: all). The storage type: upload, private, authenticated, facebook, twitter, gplus, instagram_name, gravatar, youtube, hulu, vimeo, animoto, worldstarhiphop or dailymotion. Relevant as a parameter only when using the SDKs (the type is included in the endpoint URL for direct calls to the HTTP API).
+* `maxResults` - Optional. (Integer, default=10. maximum=500). Max number of resources to return.
+* `tags` - Optional (Boolean, default: false). If true, include the list of tag names assigned each resource.
+* `prefix` - Optional. (String). Find all resources with a public ID that starts with the given prefix. The resources are sorted by public ID in the response.
+
+> With `prefix`, you can source only media files from a specific folder. However, you will need to specify `type` and `resourceType` in the config options.
+
+An example `prefix` value will is `gatsby-anime-videos/`. This will fetch only media files with public ids beginning with `gatsby-anime-videos/*`. Example: `gatsby-anime-videos/naruto.mp4`
 
 Obtain your cloudname, key and secret from your cloudinary console when you signup at https://cloudinary.com
 
