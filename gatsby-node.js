@@ -33,15 +33,22 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }, configOpt
 
     const queryParams = new Object;
 
-    if(!!resourceType){queryParams.resource_type = resourceType}
-    if(!!tags){queryParams.tags = tags}
-    if(!!maxResults){queryParams.max_results = maxResults}
-    if(!!type){queryParams.type = type}
-    if(!!prefix && !!type){queryParams.prefix = prefix}
-    if(!!context){queryParams.context = context}
+    const search = cloudinary.v2.search
+    const expression = []
+
+    if(!!resourceType){expression.push('resource_type:' + resourceType)}
+    if(!!type){expression.push('type:' + type)}
+    if(!!prefix && !!type){expression.push('public_id:' + prefix + '*')}
+
+    search.expression(expression.join(' AND '))
+
+    if(!!tags){search.with_field('tags')}
+    if(!!context){search.with_field('context')}
+
+    if(!!maxResults){search.max_results(maxResults)}
 
     return (
-        cloudinary.v2.api.resources(queryParams,(error, result)=>{
+        search.execute().then(result => {
             if(result.resources.length > 0){
                 result.resources.forEach((mediaItem)=>{
                     const nodeData = processMedia(mediaItem)
@@ -51,8 +58,8 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }, configOpt
             }else{
                 console.log('\n ~Yikes! No Cloudinary files found and nodes not created. Try a better query.')
             }
-            if(error){console.log(error)}
-
+        }).catch(error => {
+            console.log(error)
         })
     )
   }
