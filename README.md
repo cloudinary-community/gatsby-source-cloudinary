@@ -21,7 +21,8 @@ In your `gatsby-config.js` file, include the plugin like this:
     type: `type Value`,
     maxResults: `Max result`,
     tags:`fetch image tags?`,
-    prefix: `abc-xyz/`
+    prefix: `abc-xyz/`,
+    context: true,
     }
 }
 ```

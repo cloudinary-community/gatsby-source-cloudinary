@@ -2,9 +2,9 @@ const cloudinary = require('cloudinary')
 
 exports.sourceNodes = ({ actions, createNodeId, createContentDigest }, configOptions) => {
     const { createNode } = actions
-  
+
     delete configOptions.plugins
-  
+
     // Configure Cloudinary
     cloudinary.config({
         cloud_name: configOptions.cloudName,
@@ -29,7 +29,7 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }, configOpt
 
         return nodeData
     }
-    const {resourceType, prefix, tags, maxResults, type} = configOptions
+    const {resourceType, prefix, tags, maxResults, type, context} = configOptions
 
     const queryParams = new Object;
 
@@ -38,6 +38,7 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }, configOpt
     if(!!maxResults){queryParams.max_results = maxResults}
     if(!!type){queryParams.type = type}
     if(!!prefix && !!type){queryParams.prefix = prefix}
+    if(!!context){queryParams.context = context}
 
     return (
         cloudinary.v2.api.resources(queryParams,(error, result)=>{
@@ -46,12 +47,12 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }, configOpt
                     const nodeData = processMedia(mediaItem)
                     createNode(nodeData)
                     console.log("Created Cloudinary file node")
-                })  
+                })
             }else{
                 console.log('\n ~Yikes! No Cloudinary files found and nodes not created. Try a better query.')
             }
             if(error){console.log(error)}
-            
+
         })
     )
   }
