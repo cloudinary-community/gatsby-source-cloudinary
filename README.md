@@ -14,10 +14,10 @@ In your `gatsby-config.js` file, include the plugin like this:
 {
     resolve:`gatsby-source-cloudinary`,
     options:{
-    cloudName: 'xxxx',
-    apiKey: 'xxxxxxxxxxxxxx',
-    apiSecret: 'xxxxxxxxxxxxx',
-    resourceType: 'image',
+    cloudName: `xxxx`,
+    apiKey: `xxxxxxxxxxxxxx`,
+    apiSecret: `xxxxxxxxxxxxx`,
+    resourceType: `image`,
     type: `type Value`,
     maxResults: `Max result`,
     tags:`fetch image tags?`,
