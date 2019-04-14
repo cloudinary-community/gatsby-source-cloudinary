@@ -38,7 +38,7 @@ Here are details of each query parameter as culled from cloudinary.com.
 
 > With `prefix`, you can source only media files from a specific folder. However, you will need to specify `type` and `resourceType` in the config options.
 
-An example `prefix` value will is `gatsby-anime-videos/`. This will fetch only media files with public ids beginning with `gatsby-anime-videos/*`. Example: `gatsby-anime-videos/naruto.mp4`
+An example `prefix` value is `gatsby-anime-videos/`. This will fetch only media files with public ids beginning with `gatsby-anime-videos/*`. Example: `gatsby-anime-videos/naruto.mp4`
 
 Obtain your cloudname, key and secret from your cloudinary console when you signup at [Cloudinary.com](https://cloudinary.com)
 
