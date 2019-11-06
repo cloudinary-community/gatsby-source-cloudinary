@@ -1,6 +1,7 @@
 const cloudinary = require('cloudinary')
 
 exports.sourceNodes = ({ actions, createNodeId, createContentDigest }, configOptions) => {
+    
     const { createNode } = actions
   
     delete configOptions.plugins
@@ -21,7 +22,7 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }, configOpt
         parent: null,
         children: [],
         internal: {
-            type: `CloudinaryMedia`,
+            type: `Media`,
             content: nodeContent,
             contentDigest: createContentDigest(media),
         },
@@ -44,7 +45,13 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }, configOpt
             if(result.resources.length > 0){
                 result.resources.forEach((mediaItem)=>{
                     const nodeData = processMedia(mediaItem)
-                    createNode(nodeData)
+                    console.log(nodeData.public_id)
+                    cloudinary.v2.api.resource(nodeData.public_id,
+                            function(error, result) {
+                                console.log(result, error);
+                                createNode(result)
+                             });
+                    //createNode(nodeData)
                     console.log("Created Cloudinary file node")
                 })  
             }else{
@@ -52,6 +59,7 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }, configOpt
             }
             if(error){console.log(error)}
             
-        })
-    )
+                })
+            )
+    
   }
