@@ -1,26 +1,21 @@
 const {newCloudinary, getResourceOptions} = require('./utils');
+const type = `CloudinaryMedia`;
 
 const getNodeData = (gatsby, media) => {
-  const nodeId = gatsby.createNodeId(`cloudinary-media-${media.public_id}`)
-  const nodeContent = JSON.stringify(media)
-
-  const nodeData = {
+  return {
     ...media,
-    id: nodeId,
+    id: gatsby.createNodeId(`cloudinary-media-${media.public_id}`),
     parent: null,
-    children: [],
     internal: {
-      type: `CloudinaryMedia`,
-      content: nodeContent,
-      contentDigest: gatsby.createContentDigest(media),
-    },
+      type,
+      content: JSON.stringify(media),
+      contentDigest: gatsby.createContentDigest(media)
+    }
   };
-
-  return nodeData
 };
 
 const createCloudinaryNodes = (gatsby, cloudinary, options) => {
-  cloudinary.v2.api.resources(options, (error, result) => {
+  return cloudinary.api.resources(options, (error, result) => {
     const hasResources = (result && result.resources && result.resources.length);
 
     if (error) {
@@ -29,23 +24,22 @@ const createCloudinaryNodes = (gatsby, cloudinary, options) => {
     }
 
     if (!hasResources) {
-      console.log('\n ~Yikes! No nodes created because no Cloudinary resources found. Try a different query?')
+      console.warn('\n ~Yikes! No nodes created because no Cloudinary resources found. Try a different query?');
       return;
     }
 
     result.resources.forEach(resource => {
-      const nodeData = getNodeData(resource);
+      const nodeData = getNodeData(gatsby, resource);
       gatsby.actions.createNode(nodeData);
-      console.log(`Created CloudinaryMedia node: ${media.public_id}`)
-    })
+    });
+
+    console.info(`Added ${hasResources} CloudinaryMedia ${hasResources > 1 ? 'nodes' : 'node'}`);
   });
 };
 
 exports.sourceNodes = (gatsby, options) => {
-  delete options.plugins;
-
   const cloudinary = newCloudinary(options);
   const resourceOptions = getResourceOptions(options);
 
-  createCloudinaryNodes(gatsby, cloudinary, resourceOptions);
+  return createCloudinaryNodes(gatsby, cloudinary, resourceOptions);
 };
