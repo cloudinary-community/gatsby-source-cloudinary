@@ -1,4 +1,6 @@
 const cloudinary = require('cloudinary').v2;
+const snakeCase = require('lodash.snakecase');
+
 
 const DEFAULT_KEYS = ["resourceType", "prefix", "tags", "maxResults", "type", "context"];
 
@@ -15,7 +17,7 @@ const getResourceOptions = (options) => {
     let result = {};
     DEFAULT_KEYS.forEach(key => {
         if (typeof options[key] !== 'undefined') {
-            result[key] = options[key];
+            result[snakeCase(key)] = options[key];
         }
     });
 };
