@@ -16,6 +16,7 @@
   "author": "Ugonna William Imoh",
   "license": "MIT",
   "dependencies": {
-    "cloudinary": "^1.11.0"
+    "cloudinary": "^1.11.0",
+    "lodash.snakecase": "^4.1.1"
   }
 }

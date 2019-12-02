@@ -1,57 +1,45 @@
-const cloudinary = require('cloudinary')
+const {newCloudinary, getResourceOptions} = require('./utils');
+const type = `CloudinaryMedia`;
 
-exports.sourceNodes = ({ actions, createNodeId, createContentDigest }, configOptions) => {
-    const { createNode } = actions
-  
-    delete configOptions.plugins
-  
-    // Configure Cloudinary
-    cloudinary.config({
-        cloud_name: configOptions.cloudName,
-        api_key: configOptions.apiKey,
-        api_secret: configOptions.apiSecret
-    })
-
-    const processMedia = media => {
-        const nodeId = createNodeId(`cloudinary-media-${media.public_id}`)
-        const nodeContent = JSON.stringify(media)
-
-        const nodeData = Object.assign({}, media, {
-        id: nodeId,
-        parent: null,
-        children: [],
-        internal: {
-            type: `CloudinaryMedia`,
-            content: nodeContent,
-            contentDigest: createContentDigest(media),
-        },
-        })
-
-        return nodeData
+const getNodeData = (gatsby, media) => {
+  return {
+    ...media,
+    id: gatsby.createNodeId(`cloudinary-media-${media.public_id}`),
+    parent: null,
+    internal: {
+      type,
+      content: JSON.stringify(media),
+      contentDigest: gatsby.createContentDigest(media)
     }
-    const {resourceType, prefix, tags, maxResults, type} = configOptions
+  };
+};
 
-    const queryParams = new Object;
+const createCloudinaryNodes = (gatsby, cloudinary, options) => {
+  return cloudinary.api.resources(options, (error, result) => {
+    const hasResources = (result && result.resources && result.resources.length);
 
-    if(!!resourceType){queryParams.resource_type = resourceType}
-    if(!!tags){queryParams.tags = tags}
-    if(!!maxResults){queryParams.max_results = maxResults}
-    if(!!type){queryParams.type = type}
-    if(!!prefix && !!type){queryParams.prefix = prefix}
+    if (error) {
+      console.error(error);
+      return;
+    }
 
-    return (
-        cloudinary.v2.api.resources(queryParams,(error, result)=>{
-            if(result.resources.length > 0){
-                result.resources.forEach((mediaItem)=>{
-                    const nodeData = processMedia(mediaItem)
-                    createNode(nodeData)
-                    console.log("Created Cloudinary file node")
-                })  
-            }else{
-                console.log('\n ~Yikes! No Cloudinary files found and nodes not created. Try a better query.')
-            }
-            if(error){console.log(error)}
-            
-        })
-    )
-  }
+    if (!hasResources) {
+      console.warn('\n ~Yikes! No nodes created because no Cloudinary resources found. Try a different query?');
+      return;
+    }
+
+    result.resources.forEach(resource => {
+      const nodeData = getNodeData(gatsby, resource);
+      gatsby.actions.createNode(nodeData);
+    });
+
+    console.info(`Added ${hasResources} CloudinaryMedia ${hasResources > 1 ? 'nodes' : 'node'}`);
+  });
+};
+
+exports.sourceNodes = (gatsby, options) => {
+  const cloudinary = newCloudinary(options);
+  const resourceOptions = getResourceOptions(options);
+
+  return createCloudinaryNodes(gatsby, cloudinary, resourceOptions);
+};
