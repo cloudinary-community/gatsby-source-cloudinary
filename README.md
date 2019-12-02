@@ -14,9 +14,9 @@ In your `gatsby-config.js` file, include the plugin like this:
 {
     resolve:`gatsby-source-cloudinary`,
     options:{
-    cloudName: `xxxx`,
-    apiKey: `xxxxxxxxxxxxxx`,
-    apiSecret: `xxxxxxxxxxxxx`,
+    cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+    apiKey: process.env.CLOUDINARY_API_KEY,
+    apiSecret: process.env.CLOUDINARY_API_SECRET,
     resourceType: `image`,
     type: `type Value`,
     maxResults: `Max result`,
@@ -28,7 +28,9 @@ In your `gatsby-config.js` file, include the plugin like this:
 
 `cloudName`, `apiKey` and `apiSecret` are compulsory fields whereas the rest are optional query parameters to be included.
 
-Here are details of each query parameter as culled from cloudinary.com.
+> Store your `cloudName`, `apiKey` and `apiSecret` as environment variables for security. Ensure to configure the environment variables on deployment as well.
+
+Here are details of each query parameter as culled from [Cloudinary.com](https://cloudinary.com).
 
 * `resourceType` - Optional (String, default: image). The type of file. Possible values: image, raw, video. Relevant as a parameter only when using the SDKs (the resource type is included in the endpoint URL for direct calls to the HTTP API). Note: Use the video resource type for all video resources as well as for audio files, such as .mp3.
 * `type` - Optional (String, default: all). The storage type: upload, private, authenticated, facebook, twitter, gplus, instagram_name, gravatar, youtube, hulu, vimeo, animoto, worldstarhiphop or dailymotion. Relevant as a parameter only when using the SDKs (the type is included in the endpoint URL for direct calls to the HTTP API).
