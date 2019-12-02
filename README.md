@@ -2,33 +2,6 @@
 
 This plugin is used to query media files from your cloudinary account into file nodes in your Gatsby project.
 
-## Installation
-To use, in your Gatsby project run:
-
-```bash
-npm install --save gatsby-source-cloudinary
-```
-
-In your `gatsby-config.js` file, include the plugin like this:
-
-```js
-{
-    resolve:`gatsby-source-cloudinary`,
-    options:{
-    cloudName: process.env.CLOUDINARY_CLOUD_NAME,
-    apiKey: process.env.CLOUDINARY_API_KEY,
-    apiSecret: process.env.CLOUDINARY_API_SECRET,
-    resourceType: `image`,
-    type: `type Value`,
-    maxResults: `Max result`,
-    tags:`fetch image tags?`,
-    prefix: `abc-xyz/`
-    }
-}
-```
-
-`cloudName`, `apiKey` and `apiSecret` are compulsory fields whereas the rest are optional query parameters to be included.
-
 ## Cloudinary Credentials
 Obtain your cloudname, key and secret from your cloudinary console when you signup at [Cloudinary.com](https://cloudinary.com)
 
@@ -58,6 +31,33 @@ There are several options to configuring `dotenv` to use different env files eit
 Add the `.env` file to `.gitignore` so it's not committed.
 
 Ensure to configure the environment variables on deployment as well.
+
+## Installation
+To use, in your Gatsby project run:
+
+```bash
+npm install --save gatsby-source-cloudinary
+```
+
+In your `gatsby-config.js` file, include the plugin like this:
+
+```js
+{
+    resolve:`gatsby-source-cloudinary`,
+    options:{
+    cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+    apiKey: process.env.CLOUDINARY_API_KEY,
+    apiSecret: process.env.CLOUDINARY_API_SECRET,
+    resourceType: `image`,
+    type: `type Value`,
+    maxResults: `Max result`,
+    tags:`fetch image tags?`,
+    prefix: `abc-xyz/`
+    }
+}
+```
+
+`cloudName`, `apiKey` and `apiSecret` are compulsory fields whereas the rest are optional query parameters to be included.
 
 
 ## Query Parameters
