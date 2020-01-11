@@ -14,8 +14,8 @@ const getNodeData = (gatsby, media) => {
   };
 };
 
-const addTransformations = (resource, transformation)=>{
-  const splitURL = resource.url.split('/');
+const addTransformations = (resource, transformation, secure)=>{
+  const splitURL = secure ? resource.secure_url.split('/') : resource.url.split('/');
   splitURL.splice( 6, 0, transformation);
 
   const transformedURL = splitURL.join('/');
@@ -41,7 +41,7 @@ const createCloudinaryNodes = (gatsby, cloudinary, options) => {
       const transformations = "q_auto,f_auto" // Default CL transformations, todo: fetch base transformations from config maybe.  
       
       resource.url = addTransformations(resource, transformations);
-      resource.secure_url = addTransformations(resource, transformations);
+      resource.secure_url = addTransformations(resource, transformations, true);
 
       const nodeData = getNodeData(gatsby, resource);
       gatsby.actions.createNode(nodeData);
