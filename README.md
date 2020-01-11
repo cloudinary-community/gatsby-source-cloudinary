@@ -73,4 +73,6 @@ Here are details of each query parameter as culled from [Cloudinary.com](https:/
 
 An example `prefix` value is `gatsby-anime-videos/`. This will fetch only media files with public ids beginning with `gatsby-anime-videos/*`. Example: `gatsby-anime-videos/naruto.mp4`
 
+> The f_auto and q_auto transformation is applied automatically to all media queries to optimize the delivered quality and format.
+
 Feel free to create feature requests.... and PRs :)
