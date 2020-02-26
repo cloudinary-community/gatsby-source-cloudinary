@@ -1,6 +1,8 @@
 # Gatsby-Source-Cloudinary
 
-This plugin is used to query media files from your cloudinary account into file nodes in your Gatsby project.
+This source plugin is used to query media files from your cloudinary account into file nodes in your Gatsby project.
+
+Looking to use the features of Gatsby-Image with Cloudinary optimized storage, transformations and delivery? Checkout the [gatsby-transformer-cloudinary](https://www.npmjs.com/package/gatsby-transformer-cloudinary) plugin.
 
 ## Cloudinary Credentials
 Obtain your cloudname, key and secret from your cloudinary console when you signup at [Cloudinary.com](https://cloudinary.com)
