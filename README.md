@@ -3,6 +3,7 @@
 This source plugin is used to query media files from your cloudinary account into file nodes in your Gatsby project.
 
 [See a live demo here](https://gsc-sample.netlify.com/)
+
 [Here's a tutorial on plugin usage](https://scotch.io/tutorials/handling-images-in-gatsby-with-high-performance)
 
 Looking to use the features of Gatsby-Image with Cloudinary optimized storage, transformations and delivery? Checkout the [gatsby-transformer-cloudinary](https://www.npmjs.com/package/gatsby-transformer-cloudinary) plugin.
