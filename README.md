@@ -1,6 +1,8 @@
 # Gatsby-Source-Cloudinary
 
-This plugin is used to query media files from your cloudinary account into file nodes in your Gatsby project.
+This source plugin is used to query media files from your cloudinary account into file nodes in your Gatsby project.
+
+Looking to use the features of Gatsby-Image with Cloudinary optimized storage, transformations and delivery? Checkout the [gatsby-transformer-cloudinary](https://www.npmjs.com/package/gatsby-transformer-cloudinary) plugin.
 
 ## Cloudinary Credentials
 Obtain your cloudname, key and secret from your cloudinary console when you signup at [Cloudinary.com](https://cloudinary.com)
@@ -74,5 +76,7 @@ Here are details of each query parameter as culled from [Cloudinary.com](https:/
 An example `prefix` value is `gatsby-anime-videos/`. This will fetch only media files with public ids beginning with `gatsby-anime-videos/*`. Example: `gatsby-anime-videos/naruto.mp4`
 
 > The `f_auto` and `q_auto` Cloudinary transformations are applied automatically to all media queries. This optimizes the delivered media quality and format.
+
+All media files sourced from Cloudinary are on build, hence you will need to trigger a new production build whenever new media files are added directly on Cloudinary. 
 
 Feel free to create feature requests.... and PRs :)
