@@ -77,4 +77,6 @@ An example `prefix` value is `gatsby-anime-videos/`. This will fetch only media 
 
 > The `f_auto` and `q_auto` Cloudinary transformations are applied automatically to all media queries. This optimizes the delivered media quality and format.
 
+All media files sourced from Cloudinary are on build, hence you will need to trigger a new production build whenever new media files are added directly on Cloudinary. 
+
 Feel free to create feature requests.... and PRs :)
