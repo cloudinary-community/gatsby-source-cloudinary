@@ -152,14 +152,14 @@ const Images = () => {
           }
           `
     );
-    const clImages = data.allCloudinaryMedia.edges.node;
+    const clImages = data.allCloudinaryMedia.edges;
 
     return (
         <div>
           <div>
             {clImages.map((image, index) => (
                   <div key={`${index}-cl`}>
-                    <img src={image.secure_url} />
+                    <img src={image.node.secure_url} />
                   </div>
                 ))
             }
