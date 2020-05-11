@@ -121,6 +121,7 @@ You can find the plugin options in the table below.
 | `maxResults`   | integer | false    | 10      | Max number of resources to return                                                                                                                                                       |
 | `tags`         | boolean | false    | false   | If true, include the list of tag names assigned to each resource                                                                                                                        |
 | `prefix`       | string  | false    | n/a     | Find all resources with a public ID that starts with the given prefix. The resources are sorted by public ID in the response.                                                           |
+| `context`      | boolean | false    | n/a     | Specifies if the context data for the image should be returned. This is useful for retrieving `alt` text or custom metadata in key:value pairs for an image set on Cloudinary.          |
 
 With `prefix`, you can source only media files from a specific folder. However, you will need to specify `type` and `resourceType` in the config options.
 
