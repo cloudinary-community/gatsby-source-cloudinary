@@ -14,18 +14,27 @@ const getNodeData = (gatsby, media) => {
   };
 };
 
-const addTransformations = (resource, transformation, secure)=>{
-  const splitURL = secure ? resource.secure_url.split('/') : resource.url.split('/');
-  splitURL.splice( 6, 0, transformation);
 
-  const transformedURL = splitURL.join('/');
-  return transformedURL;
-      
+const applyTransformation = (cloudinary, resource, transformation) => {
+  return {
+      url: cloudinary.url(`${resource.public_id}.${resource.format}`, {
+      secure: false,
+      transformation
+    }),
+    secure_url: cloudinary.url(`${resource.public_id}.${resource.format}`, {
+        secure: true,
+        transformation
+    })
+  }
 }
 
 const createCloudinaryNodes = (gatsby, cloudinary, options) => {
-  return cloudinary.api.resources(options, (error, result) => {
+  
+  const resourceOptions = getResourceOptions(options);
+
+  return cloudinary.api.resources(resourceOptions, (error, result) => {
     const hasResources = (result && result.resources && result.resources.length);
+    console.debug(`Cloudinary rate limit remaining: ${result.rate_limit_remaining}`)
 
     if (error) {
       console.error(error);
@@ -38,11 +47,10 @@ const createCloudinaryNodes = (gatsby, cloudinary, options) => {
     }
 
     result.resources.forEach(resource => {
-      const transformations = "q_auto,f_auto" // Default CL transformations, todo: fetch base transformations from config maybe.  
+      Object.keys(options.transformations || []).forEach( (transformation) => {
+        resource[transformation] = applyTransformation(cloudinary, resource, options.transformations[transformation]);
+      })
       
-      resource.url = addTransformations(resource, transformations);
-      resource.secure_url = addTransformations(resource, transformations, true);
-
       const nodeData = getNodeData(gatsby, resource);
       gatsby.actions.createNode(nodeData);
     });
@@ -53,7 +61,5 @@ const createCloudinaryNodes = (gatsby, cloudinary, options) => {
 
 exports.sourceNodes = (gatsby, options) => {
   const cloudinary = newCloudinary(options);
-  const resourceOptions = getResourceOptions(options);
-
-  return createCloudinaryNodes(gatsby, cloudinary, resourceOptions);
+  return createCloudinaryNodes(gatsby, cloudinary, options );
 };

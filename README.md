@@ -96,12 +96,15 @@ In your `gatsby-config.js` file, include the plugin like this:
 {
     resolve:`gatsby-source-cloudinary`,
     options: {
-    cloudName: process.env.CLOUDINARY_CLOUD_NAME,
-    apiKey: process.env.CLOUDINARY_API_KEY,
-    apiSecret: process.env.CLOUDINARY_API_SECRET,
-    resourceType: `image`,
-    type: `type Value`,
-    prefix: `abc-xyz/`
+      cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+      apiKey: process.env.CLOUDINARY_API_KEY,
+      apiSecret: process.env.CLOUDINARY_API_SECRET,
+      resourceType: `image`,
+      type: `type Value`,
+      prefix: `abc-xyz/`,
+      transformations: {
+        auto: { quality: 'auto', fetch_format: 'auto' }
+      }
     }
 }
 ```
@@ -122,17 +125,17 @@ You can find the plugin options in the table below.
 | `tags`         | boolean | false    | false   | If true, include the list of tag names assigned to each resource                                                                                                                        |
 | `prefix`       | string  | false    | n/a     | Find all resources with a public ID that starts with the given prefix. The resources are sorted by public ID in the response.                                                           |
 | `context`      | boolean | false    | n/a     | Specifies if the context data for the image should be returned. This is useful for retrieving `alt` text or custom metadata in key:value pairs for an image set on Cloudinary.          |
+| `transformations`      | object | false    | `{}`     | Adds Cloudinary transformation options.          |
 
 With `prefix`, you can source only media files from a specific folder. However, you will need to specify `type` and `resourceType` in the config options.
 
 An example `prefix` value is `gatsby-anime-videos/`. This will fetch only media files with public ids beginning with `gatsby-anime-videos/*`. Example: `gatsby-anime-videos/naruto.mp4`
 
-The `f_auto` and `q_auto` Cloudinary transformations are applied automatically to all media queries. This optimizes the delivered media quality and format.
 
 > All media files sourced from Cloudinary are done when Gatsby creates an optimized build, hence you will need to trigger a new production build whenever new media files are added directly on Cloudinary. 
 
 ## How to use
-Once a development server is started using `gatsby develop`, all media assets configured in the plugin are available as `cloudinaryMedia` and `allCloudinaryMedia` in graphQL.
+Once a development server is started using `gatsby develop`, all media assets configured in the plugin are available as `cloudinaryMedia` and `allCloudinaryMedia` in GraphQL.
 These can run in a Page Query or StaticQuery.
 
 ```jsx harmony
@@ -169,6 +172,71 @@ const Images = () => {
       )
   };
 ``` 
+
+## Transformations
+
+Cloudinary supports image transformations to be defined either "on the fly" (by adding transformation options to the asset's URL) or as named transformations which are prerendered during the upload phase. You can add both kinds of transformations using the `transformations` option. The URLs containing all transformation parameters are then added to the GraphQL schema. See Cloudinary's full list of image transformation options [here](https://cloudinary.com/documentation/image_transformation_reference).  
+
+Here's an example of how to use transformations in this plugin:
+
+gatsby-config.js:
+```js
+{
+  resolve: 'gatsby-source-cloudinary',
+  options: {
+    //...
+    transformations: {
+      // automatic quality & format choice (webp in Chrome)
+      auto: { quality: 'auto', fetch_format: 'auto' }, 
+      // named transformation, must be defined in Cloudinary upfront
+      maxeco: 'maxeco', 
+      // maximum condensed thumbnail
+      thumb: { quality: 20, width: 200, format: 'webp' },
+      // cropping to faces with AI
+      cropped: { width: 400, height: 400, gravity: 'faces', crop: 'fill' }
+    },
+  },
+},
+```
+
+and in your GQL queries: 
+
+```gql
+query TransformedCloudinaryMedia {
+  allCloudinaryMedia {
+    edges {
+      node {
+        # the original asset
+        secure_url
+        auto {
+          # -> /image/upload/f_auto,q_auto/v1/<asset>.jpg
+          url
+          secure_url
+        }
+        maxeco {
+          # -> /image/upload/t_maxeco/v1/<asset>.jpg
+          url
+          secure_url
+        }
+        thumb {
+          # -> /image/upload/q_20,w_200/v1/<asset>.jpg
+          url
+          secure_url
+        }
+        cropped {
+          # -> /image/upload/c_fill,g_faces,h_400,w_400/v1/<asset>.jpg
+          url  
+          secure_url
+        }
+      }
+    }
+  }
+}
+
+```
+
+
+
 
 ## Other Resources
 - [Cloudinary image transformation reference](https://cloudinary.com/documentation/image_transformation_reference)
