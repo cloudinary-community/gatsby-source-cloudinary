@@ -17,13 +17,20 @@ const getNodeData = (gatsby, media) => {
 const addTransformations = (resource, transformation, secure)=>{
   const splitURL = secure ? resource.secure_url.split('/') : resource.url.split('/');
   splitURL.splice( 6, 0, transformation);
-
   const transformedURL = splitURL.join('/');
   return transformedURL;
-      
 }
 
 const createCloudinaryNodes = (gatsby, cloudinary, options) => {
+  return new Promise((resolve) => {
+    fetchAllResources(cloudinary, options, (resources) => {
+      createNotes(gatsby, resources);
+      resolve();
+    })
+  });
+}
+
+const fetchAllResources = (cloudinary, options, callback) => {
   return cloudinary.api.resources(options, (error, result) => {
     const hasResources = (result && result.resources && result.resources.length);
 
@@ -37,19 +44,41 @@ const createCloudinaryNodes = (gatsby, cloudinary, options) => {
       return;
     }
 
-    result.resources.forEach(resource => {
-      const transformations = "q_auto,f_auto" // Default CL transformations, todo: fetch base transformations from config maybe.  
-      
-      resource.url = addTransformations(resource, transformations);
-      resource.secure_url = addTransformations(resource, transformations, true);
+    const { resources: currentPageResources } = result;
 
-      const nodeData = getNodeData(gatsby, resource);
-      gatsby.actions.createNode(nodeData);
-    });
-
-    console.info(`Added ${hasResources} CloudinaryMedia ${hasResources > 1 ? 'nodes' : 'node'}`);
+    if(result.next_cursor) {
+      const nextPageOptions = {
+        ...options,
+        next_cursor: result.next_cursor
+      }
+      // Recursive invocation                     
+      fetchAllResources(cloudinary, nextPageOptions, (nextPageResources) => {
+        const combinedResources = [...currentPageResources, ...nextPageResources];
+        callback(combinedResources);
+      });
+    } 
+    else {
+      callback(currentPageResources);
+    }
   });
 };
+
+
+const createNotes = (gatsby, resources) => {
+  resources.forEach(resource => {
+    const transformations = "q_auto,f_auto" // Default CL transformations, todo: fetch base transformations from config maybe.  
+
+    resource.url = addTransformations(resource, transformations);
+    resource.secure_url = addTransformations(resource, transformations, true);
+
+    const nodeData = getNodeData(gatsby, resource);
+    gatsby.actions.createNode(nodeData);
+  });
+
+  console.info(`Added ${resources.length} CloudinaryMedia ${resources.length > 1 ? 'nodes' : 'node'}`);
+};
+
+
 
 exports.sourceNodes = (gatsby, options) => {
   const cloudinary = newCloudinary(options);
