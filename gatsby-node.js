@@ -1,5 +1,6 @@
 const { newCloudinary, getResourceOptions } = require('./utils');
 
+const REPORTER_PREFIX = `gatsby-source-cloudinary`;
 const NODE_TYPE = `CloudinaryMedia`;
 
 const getNodeData = (gatsby, media) => {
@@ -25,18 +26,22 @@ const addTransformations = (resource, transformation, secure) => {
   return transformedURL;
 };
 
-const createCloudinaryNodes = (gatsby, cloudinary, options) => {
+const createCloudinaryNodes = (gatsbyUtils, cloudinary, options) => {
+  const { actions, reporter } = gatsbyUtils;
+
   return cloudinary.api.resources(options, (error, result) => {
     const hasResources = result && result.resources && result.resources.length;
 
     if (error) {
-      console.error(error);
+      reporter.error(
+        `${REPORTER_PREFIX}: Error fetching Cloudinary resources - ${error.message}`,
+      );
       return;
     }
 
     if (!hasResources) {
-      console.warn(
-        '\n ~Yikes! No nodes created because no Cloudinary resources found. Try a different query?',
+      reporter.warn(
+        `${REPORTER_PREFIX}: No Cloudinary resources found. Try a different query?`,
       );
       return;
     }
@@ -47,14 +52,12 @@ const createCloudinaryNodes = (gatsby, cloudinary, options) => {
       resource.url = addTransformations(resource, transformations);
       resource.secure_url = addTransformations(resource, transformations, true);
 
-      const nodeData = getNodeData(gatsby, resource);
-      gatsby.actions.createNode(nodeData);
+      const nodeData = getNodeData(gatsbyUtils, resource);
+      actions.createNode(nodeData);
     });
 
-    console.info(
-      `Added ${hasResources} CloudinaryMedia ${
-        hasResources > 1 ? 'nodes' : 'node'
-      }`,
+    reporter.info(
+      `${REPORTER_PREFIX}: Added ${hasResources} ${NODE_TYPE} nodes(s)`,
     );
   });
 };
