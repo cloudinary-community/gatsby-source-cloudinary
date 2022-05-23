@@ -1,5 +1,6 @@
 const { newCloudinary, getResourceOptions } = require('./utils');
-const type = `CloudinaryMedia`;
+
+const NODE_TYPE = `CloudinaryMedia`;
 
 const getNodeData = (gatsby, media) => {
   return {
@@ -7,7 +8,7 @@ const getNodeData = (gatsby, media) => {
     id: gatsby.createNodeId(`cloudinary-media-${media.public_id}`),
     parent: null,
     internal: {
-      type,
+      type: NODE_TYPE,
       content: JSON.stringify(media),
       contentDigest: gatsby.createContentDigest(media),
     },
