@@ -7,13 +7,15 @@ This source plugin queries media files from a Cloudinary account into `cloudinar
 [Here's a tutorial on plugin usage](https://scotch.io/tutorials/handling-images-in-gatsby-with-high-performance)
 
 ## Motivation
-Gatsby offers the ability to develop high performance web pages with a rich developer experience and declarative data fetching Layer with GraphQL. 
+
+Gatsby offers the ability to develop high performance web pages with a rich developer experience and declarative data fetching Layer with GraphQL.
 Cloudinary provides a robust solution to manage media assets, from storage, optimized delivery, to media transformations. Extending the powers of Gatsby with the use of gatsby-source-cloudinary affords the best of both worlds, to allow users store media assets on Cloudinary,
 leveraging Cloudinary's powerful optimization and transformation capabilities in fast sites built with Gatsby.
 
 While Cloudinary images with on-the-fly transformations can be used during runtime in Gatsby, gatsby-source-cloudinary utilizes the build optimizations of Gatsby.
 
 ## Features
+
 - Store media files on Cloudinary and deliver through a secure CDN to your Gatsby site
 - Average of over 60% image optimizations using `f_auto` and `q_auto` applied by default.
 - Query Cloudinary images in Gatsby's data layer using GraphQL.
@@ -23,34 +25,35 @@ While Cloudinary images with on-the-fly transformations can be used during runti
 Looking to use the features of Gatsby-Image with Cloudinary optimized storage, transformations and delivery? Checkout the [gatsby-transformer-cloudinary](https://www.npmjs.com/package/gatsby-transformer-cloudinary) plugin.
 
 ## Example usage
+
 Here's a sample usage of the source plugin to create an image gallery from images stored on Cloudinary:
 
 ```jsx harmony
-import React from 'react'
-import {useStaticQuery, graphql} from 'gatsby'
+import React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
 
 const SingleImage = () => {
-    const data = useStaticQuery(graphql`
-        query CloudinaryImage {
-            cloudinaryMedia(public_id: {eq: "gatsby-source-cloudinary/11"}) {
-                secure_url
-              }
-          }
-          `
-    );
-    const clImage = data.cloudinaryMedia.secure_url;
+  const data = useStaticQuery(graphql`
+    query CloudinaryImage {
+      cloudinaryMedia(public_id: { eq: "gatsby-source-cloudinary/11" }) {
+        secure_url
+      }
+    }
+  `);
+  const clImage = data.cloudinaryMedia.secure_url;
 
-    return (
-        <div>
-          <div>
-             <img src={clImage} alt={"no alt :("} />
-          </div>
-        </div>
-      )
-  }
-``` 
+  return (
+    <div>
+      <div>
+        <img src={clImage} alt={'no alt :('} />
+      </div>
+    </div>
+  );
+};
+```
 
 ## Installation
+
 Install the source plugin using either `npm` or `yarm`:
 
 ```bash
@@ -58,12 +61,14 @@ npm install --save gatsby-source-cloudinary
 ```
 
 ### Cloudinary Credentials
+
 Cloudinary offers a generous free tier which is more than enough to bootstrap projects.
 Obtain your cloudname, key and secret from your cloudinary console when you signup at [Cloudinary.com](https://cloudinary.com).
 
 ### Environment configuration
+
 Store your `cloudName`, `apiKey` and `apiSecret` as environment variables for security.
-To do this, create a file in the root of the project named `.env`. Add your environment variables in it with: 
+To do this, create a file in the root of the project named `.env`. Add your environment variables in it with:
 
 ```
 CLOUDINARY_API_KEY=INSERT API KEY HERE
@@ -90,6 +95,7 @@ Add the `.env` file to `.gitignore` so it's not committed.
 Ensure to configure the environment variables on deployment as well.
 
 ### Plugin setup
+
 In your `gatsby-config.js` file, include the plugin like this:
 
 ```js
@@ -106,13 +112,12 @@ In your `gatsby-config.js` file, include the plugin like this:
 }
 ```
 
-
-
 ### Plugin options
+
 You can find the plugin options in the table below.
 
 | option         | type    | required | default | description                                                                                                                                                                             |
-|----------------|---------|----------|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| -------------- | ------- | -------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `cloudName`    | string  | true     | n/a     | Cloud name of your Cloudinary account, can be obtained from your [Cloudinary console](https://cloudinary.com/console/). This should be stored and retrieved as an environment variable. |
 | `apiKey`       | string  | true     | na/a    | API Key of your Cloudinary account, can be obtained from your [Cloudinary console](https://cloudinary.com/console/). This should be stored and retrieved as an environment variable.    |
 | `apiSecret`    | string  | true     | n/a     | API Secret of your Cloudinary account, can be obtained from your [Cloudinary console](https://cloudinary.com/console/). This should be stored and retrieved as an environment variable. |
@@ -129,54 +134,55 @@ An example `prefix` value is `gatsby-anime-videos/`. This will fetch only media 
 
 The `f_auto` and `q_auto` Cloudinary transformations are applied automatically to all media queries. This optimizes the delivered media quality and format.
 
-> All media files sourced from Cloudinary are done when Gatsby creates an optimized build, hence you will need to trigger a new production build whenever new media files are added directly on Cloudinary. 
+> All media files sourced from Cloudinary are done when Gatsby creates an optimized build, hence you will need to trigger a new production build whenever new media files are added directly on Cloudinary.
 
 ## How to use
+
 Once a development server is started using `gatsby develop`, all media assets configured in the plugin are available as `cloudinaryMedia` and `allCloudinaryMedia` in graphQL.
 These can run in a Page Query or StaticQuery.
 
 ```jsx harmony
-import React from 'react'
-import {useStaticQuery, graphql} from 'gatsby'
-
+import React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
 
 const Images = () => {
-    const data = useStaticQuery(graphql`
-        query CloudinaryImages {
-            allCloudinaryMedia {
-              edges {
-                node {
-                  secure_url
-                }
-              }
-            }
+  const data = useStaticQuery(graphql`
+    query CloudinaryImages {
+      allCloudinaryMedia {
+        edges {
+          node {
+            secure_url
           }
-          `
-    );
-    const clImages = data.allCloudinaryMedia.edges;
+        }
+      }
+    }
+  `);
+  const clImages = data.allCloudinaryMedia.edges;
 
-    return (
-        <div>
-          <div>
-            {clImages.map((image, index) => (
-                  <div key={`${index}-cl`}>
-                    <img src={image.node.secure_url} />
-                  </div>
-                ))
-            }
+  return (
+    <div>
+      <div>
+        {clImages.map((image, index) => (
+          <div key={`${index}-cl`}>
+            <img src={image.node.secure_url} />
           </div>
-        </div>
-      )
-  };
-``` 
+        ))}
+      </div>
+    </div>
+  );
+};
+```
 
 ## Other Resources
+
 - [Cloudinary image transformation reference](https://cloudinary.com/documentation/image_transformation_reference)
 - [Try the gatsby-transformer-cloudinary plugin to utilize the power of gatsby-image and cloudinary](https://www.npmjs.com/package/gatsby-transformer-cloudinary)
 - [Using Cloudinary image service for media optimization](https://www.gatsbyjs.org/docs/using-cloudinary-image-service/)
 
 ## Contribute
+
 Want to contribute to make this tool even better? Feel free to send in issues and pull requests on feature requests, fixes, bugs, typos, performance lapses or any other challenge faced with using this tool.
 
 ## License
-MIT 
+
+MIT
