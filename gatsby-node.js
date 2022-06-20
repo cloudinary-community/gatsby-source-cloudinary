@@ -1,3 +1,4 @@
+const { result } = require('lodash');
 const { newCloudinary, getResourceOptions } = require('./utils');
 
 const REPORTER_PREFIX = `gatsby-source-cloudinary`;
@@ -28,25 +29,22 @@ const addTransformations = (resource, transformation, secure) => {
   return transformedURL;
 };
 
-const createCloudinaryNodes = (gatsbyUtils, cloudinary, resourceOptions) => {
+const createCloudinaryNodes = async (
+  gatsbyUtils,
+  cloudinary,
+  resourceOptions,
+  { limit },
+) => {
   const { actions, reporter } = gatsbyUtils;
 
-  return cloudinary.api.resources(resourceOptions, (error, result) => {
-    const hasResources = result && result.resources && result.resources.length;
+  let nextCursor = null;
 
-    if (error) {
-      reporter.error(
-        `${REPORTER_PREFIX}: Error fetching Cloudinary resources - ${error.message}`,
-      );
-      return;
-    }
-
-    if (!hasResources) {
-      reporter.warn(
-        `${REPORTER_PREFIX}: No Cloudinary resources found. Try a different query?`,
-      );
-      return;
-    }
+  do {
+    const result = await cloudinary.api.resources({
+      resource_type: 'image',
+      max_results: limit < 10 ? limit : 10,
+      next_cursor: nextCursor,
+    });
 
     result.resources.forEach((resource) => {
       const transformations = 'q_auto,f_auto'; // Default CL transformations, todo: fetch base transformations from config maybe.
@@ -61,12 +59,17 @@ const createCloudinaryNodes = (gatsbyUtils, cloudinary, resourceOptions) => {
     reporter.info(
       `${REPORTER_PREFIX}: Added ${hasResources} ${NODE_TYPE} nodes(s)`,
     );
-  });
+    nextCursor = result.next_cursor;
+
+    limit = limit - 10;
+  } while (nextCursor && limit > 0);
 };
 
 exports.sourceNodes = (gatsbyUtils, pluginOptions) => {
   const cloudinary = newCloudinary(pluginOptions);
   const resourceOptions = getResourceOptions(pluginOptions);
 
-  return createCloudinaryNodes(gatsbyUtils, cloudinary, resourceOptions);
+  return createCloudinaryNodes(gatsbyUtils, cloudinary, resourceOptions, {
+    limit: 27,
+  });
 };
