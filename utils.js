@@ -1,8 +1,16 @@
-const cloudinary = require("cloudinary").v2;
-const snakeCase = require("lodash.snakecase");
+const cloudinary = require('cloudinary').v2;
+const snakeCase = require('lodash.snakecase');
 
-const DEFAULT_KEYS = ["resourceType", "prefix", "tags", "maxResults", "type", "context"];
-const DEFAULT_TYPE = "upload";
+const DEFAULT_KEYS = [
+  'resourceType',
+  'prefix',
+  'tags',
+  'maxResults',
+  'type',
+  'context',
+  'resultsPerPage',
+];
+const DEFAULT_TYPE = 'upload';
 
 const newCloudinary = (options) => {
   cloudinary.config({
@@ -11,21 +19,23 @@ const newCloudinary = (options) => {
     api_secret: options.apiSecret,
   });
 
-  return cloudinary
+  return cloudinary;
 };
 
 const getResourceOptions = (options) => {
   let result = {};
 
-  DEFAULT_KEYS.forEach(key => {
-    if (typeof options[key] !== "undefined") {
-      result[snakeCase(key)] = options[key]
+  DEFAULT_KEYS.forEach((key) => {
+    if (typeof options[key] !== 'undefined') {
+      result[snakeCase(key)] = options[key];
     }
   });
 
   result.type = result.type || DEFAULT_TYPE;
-
-  return result
+  if (!result.results_per_page) {
+    result.results_per_page = result.max_results;
+  }
+  return result;
 };
 
 module.exports = {

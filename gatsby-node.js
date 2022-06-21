@@ -1,4 +1,3 @@
-const { result } = require('lodash');
 const { newCloudinary, getResourceOptions } = require('./utils');
 
 const REPORTER_PREFIX = `gatsby-source-cloudinary`;
@@ -35,31 +34,52 @@ const createCloudinaryNodes = async (
   resourceOptions,
 ) => {
   const { actions, reporter } = gatsbyUtils;
+  const { max_results, results_per_page } = resourceOptions;
 
   let nextCursor = null;
+  let limit = max_results;
+  let resultsPerPage = results_per_page;
 
   do {
-    const result = await cloudinary.api.resources({
-      ...resourceOptions,
-      next_cursor: nextCursor,
-    });
+    try {
+      const result = await cloudinary.api.resources({
+        ...resourceOptions,
+        max_results: limit < resultsPerPage ? limit : resultsPerPage,
+        next_cursor: nextCursor,
+      });
 
-    result.resources.forEach((resource) => {
-      const transformations = 'q_auto,f_auto'; // Default CL transformations, todo: fetch base transformations from config maybe.
+      result.resources.forEach((resource) => {
+        const transformations = 'q_auto,f_auto'; // Default CL transformations, todo: fetch base transformations from config maybe.
 
-      resource.url = addTransformations(resource, transformations);
-      resource.secure_url = addTransformations(resource, transformations, true);
+        resource.url = addTransformations(resource, transformations);
+        resource.secure_url = addTransformations(
+          resource,
+          transformations,
+          true,
+        );
 
-      const nodeData = getNodeData(gatsbyUtils, resource);
-      actions.createNode(nodeData);
-    });
+        const nodeData = getNodeData(gatsbyUtils, resource);
+        actions.createNode(nodeData);
+      });
 
-    reporter.info(
-      `${REPORTER_PREFIX}: Added ${hasResources} ${NODE_TYPE} nodes(s)`,
-    );
-    nextCursor = result.next_cursor;
+      if (result.resources.length === 0) {
+        reporter.warn(
+          `${REPORTER_PREFIX}: No Cloudinary resources found. Try a different query?`,
+        );
+      } else {
+        reporter.info(
+          `${REPORTER_PREFIX}: Added ${result.resources.length} ${NODE_TYPE} nodes(s)`,
+        );
+      }
 
-    limit = limit - 10;
+      nextCursor = result.next_cursor;
+      limit = limit - result.resources.length;
+    } catch (error) {
+      reporter.error(
+        `${REPORTER_PREFIX}: Fetching Cloudinary resources failed.`,
+        error.error || error,
+      );
+    }
   } while (nextCursor && limit > 0);
 };
 
