@@ -28,45 +28,64 @@ const addTransformations = (resource, transformation, secure) => {
   return transformedURL;
 };
 
-const createCloudinaryNodes = (gatsbyUtils, cloudinary, resourceOptions) => {
+const createCloudinaryNodes = async (
+  gatsbyUtils,
+  cloudinary,
+  resourceOptions,
+) => {
   const { actions, reporter } = gatsbyUtils;
+  const { max_results, results_per_page } = resourceOptions;
 
-  return cloudinary.api.resources(resourceOptions, (error, result) => {
-    const hasResources = result && result.resources && result.resources.length;
+  let nextCursor = null;
+  let limit = max_results;
+  let resultsPerPage = results_per_page;
 
-    if (error) {
+  do {
+    try {
+      const result = await cloudinary.api.resources({
+        ...resourceOptions,
+        max_results: limit < resultsPerPage ? limit : resultsPerPage,
+        next_cursor: nextCursor,
+      });
+
+      result.resources.forEach((resource) => {
+        const transformations = 'q_auto,f_auto'; // Default CL transformations, todo: fetch base transformations from config maybe.
+
+        resource.url = addTransformations(resource, transformations);
+        resource.secure_url = addTransformations(
+          resource,
+          transformations,
+          true,
+        );
+
+        const nodeData = getNodeData(gatsbyUtils, resource);
+        actions.createNode(nodeData);
+      });
+
+      if (result.resources.length === 0) {
+        reporter.warn(
+          `${REPORTER_PREFIX}: No Cloudinary resources found. Try a different query?`,
+        );
+      } else {
+        reporter.info(
+          `${REPORTER_PREFIX}: Added ${result.resources.length} ${NODE_TYPE} nodes(s)`,
+        );
+      }
+
+      nextCursor = result.next_cursor;
+      limit = limit - result.resources.length;
+    } catch (error) {
       reporter.error(
-        `${REPORTER_PREFIX}: Error fetching Cloudinary resources - ${error.message}`,
+        `${REPORTER_PREFIX}: Fetching Cloudinary resources failed.`,
+        error.error || error,
       );
-      return;
     }
-
-    if (!hasResources) {
-      reporter.warn(
-        `${REPORTER_PREFIX}: No Cloudinary resources found. Try a different query?`,
-      );
-      return;
-    }
-
-    result.resources.forEach((resource) => {
-      const transformations = 'q_auto,f_auto'; // Default CL transformations, todo: fetch base transformations from config maybe.
-
-      resource.url = addTransformations(resource, transformations);
-      resource.secure_url = addTransformations(resource, transformations, true);
-
-      const nodeData = getNodeData(gatsbyUtils, resource);
-      actions.createNode(nodeData);
-    });
-
-    reporter.info(
-      `${REPORTER_PREFIX}: Added ${hasResources} ${NODE_TYPE} nodes(s)`,
-    );
-  });
+  } while (nextCursor && limit > 0);
 };
 
-exports.sourceNodes = (gatsbyUtils, pluginOptions) => {
+exports.sourceNodes = async (gatsbyUtils, pluginOptions) => {
   const cloudinary = newCloudinary(pluginOptions);
   const resourceOptions = getResourceOptions(pluginOptions);
 
-  return createCloudinaryNodes(gatsbyUtils, cloudinary, resourceOptions);
+  await createCloudinaryNodes(gatsbyUtils, cloudinary, resourceOptions);
 };
