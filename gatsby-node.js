@@ -3,13 +3,18 @@ const { newCloudinary, getResourceOptions } = require('./utils');
 const REPORTER_PREFIX = `gatsby-source-cloudinary`;
 const NODE_TYPE = `CloudinaryMedia`;
 
-const getNodeData = (gatsbyUtils, media) => {
+const getNodeData = (gatsbyUtils, media, cloudName) => {
   const { createNodeId, createContentDigest } = gatsbyUtils;
 
   return {
     ...media,
     id: createNodeId(`cloudinary-media-${media.public_id}`),
-    parent: null,
+    originalHeight: media.height,
+    originalWidth: media.width,
+    originalFormat: media.format,
+    cloudName: cloudName,
+    publicId: media.public_id,
+    cloudinaryData: media,
     internal: {
       type: NODE_TYPE,
       content: JSON.stringify(media),
@@ -32,6 +37,7 @@ const createCloudinaryNodes = async (
   gatsbyUtils,
   cloudinary,
   resourceOptions,
+  cloudName,
 ) => {
   const { actions, reporter } = gatsbyUtils;
   const { max_results, results_per_page } = resourceOptions;
@@ -58,7 +64,7 @@ const createCloudinaryNodes = async (
           true,
         );
 
-        const nodeData = getNodeData(gatsbyUtils, resource);
+        const nodeData = getNodeData(gatsbyUtils, resource, cloudName);
         actions.createNode(nodeData);
       });
 
@@ -84,8 +90,14 @@ const createCloudinaryNodes = async (
 };
 
 exports.sourceNodes = async (gatsbyUtils, pluginOptions) => {
+  const { cloudName } = pluginOptions;
   const cloudinary = newCloudinary(pluginOptions);
   const resourceOptions = getResourceOptions(pluginOptions);
 
-  await createCloudinaryNodes(gatsbyUtils, cloudinary, resourceOptions);
+  await createCloudinaryNodes(
+    gatsbyUtils,
+    cloudinary,
+    resourceOptions,
+    cloudName,
+  );
 };
