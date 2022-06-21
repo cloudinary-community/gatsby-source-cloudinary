@@ -33,7 +33,6 @@ const createCloudinaryNodes = async (
   gatsbyUtils,
   cloudinary,
   resourceOptions,
-  { limit },
 ) => {
   const { actions, reporter } = gatsbyUtils;
 
@@ -41,8 +40,7 @@ const createCloudinaryNodes = async (
 
   do {
     const result = await cloudinary.api.resources({
-      resource_type: 'image',
-      max_results: limit < 10 ? limit : 10,
+      ...resourceOptions,
       next_cursor: nextCursor,
     });
 
@@ -65,11 +63,9 @@ const createCloudinaryNodes = async (
   } while (nextCursor && limit > 0);
 };
 
-exports.sourceNodes = (gatsbyUtils, pluginOptions) => {
+exports.sourceNodes = async (gatsbyUtils, pluginOptions) => {
   const cloudinary = newCloudinary(pluginOptions);
   const resourceOptions = getResourceOptions(pluginOptions);
 
-  return createCloudinaryNodes(gatsbyUtils, cloudinary, resourceOptions, {
-    limit: 27,
-  });
+  await createCloudinaryNodes(gatsbyUtils, cloudinary, resourceOptions);
 };
