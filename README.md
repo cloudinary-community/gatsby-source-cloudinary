@@ -1,15 +1,17 @@
 # Gatsby-Source-Cloudinary
 
-This source plugin queries media files from a Cloudinary account into `cloudinaryMedia` nodes in your Gatsby project.
+This source plugin queries media files from a Cloudinary account into `CloudinaryMedia` nodes in your Gatsby project.
 
 [See a live demo here](https://gsc-sample.netlify.com/)
 
 [Here's a tutorial on plugin usage](https://scotch.io/tutorials/handling-images-in-gatsby-with-high-performance)
 
+If support for the [gatsby-plugin-image](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) is needed add and configure the [gatsby-transformer-cloudinary](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/) plugin.
+
 ## Motivation
 
-Gatsby offers the ability to develop high performance web pages with a rich developer experience and declarative data fetching Layer with GraphQL.
-Cloudinary provides a robust solution to manage media assets, from storage, optimized delivery, to media transformations. Extending the powers of Gatsby with the use of gatsby-source-cloudinary affords the best of both worlds, to allow users store media assets on Cloudinary,
+Gatsby offers the ability to develop high-performance web pages with a rich developer experience and declarative data fetching Layer with GraphQL.
+Cloudinary provides a robust solution to manage media assets, from storage, and optimized delivery, to media transformations. Extending the powers of Gatsby with the use of gatsby-source-cloudinary affords the best of both worlds, to allow users to store media assets on Cloudinary,
 leveraging Cloudinary's powerful optimization and transformation capabilities in fast sites built with Gatsby.
 
 While Cloudinary images with on-the-fly transformations can be used during runtime in Gatsby, gatsby-source-cloudinary utilizes the build optimizations of Gatsby.
@@ -20,55 +22,82 @@ While Cloudinary images with on-the-fly transformations can be used during runti
 - Average of over 60% image optimizations using `f_auto` and `q_auto` applied by default.
 - Query Cloudinary images in Gatsby's data layer using GraphQL.
 - Utilize Cloudinary's robust transformation suite in media files on a Gatsby site.
-- Manage media assets of an application completely on Cloudinary rather than directly in the codebase.
+- Manage media assets of an application entirely on Cloudinary rather than directly in the codebase.
 
-Looking to use the features of Gatsby-Image with Cloudinary optimized storage, transformations and delivery? Checkout the [gatsby-transformer-cloudinary](https://www.npmjs.com/package/gatsby-transformer-cloudinary) plugin.
+Looking to use the features of Gatsby-Image with Cloudinary optimized storage, transformations, and delivery? Check out the [gatsby-transformer-cloudinary](https://www.npmjs.com/package/gatsby-transformer-cloudinary) plugin.
 
 ## Example usage
 
-Here's a sample usage of the source plugin to create an image gallery from images stored on Cloudinary:
+Example showing use with and without [gatsby-plugin-image](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) + [ [gatsby-transformer-cloudinary](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/). The latter will add the `gatsbyImageData` resolver used below.
 
-```jsx harmony
+```js
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 const SingleImage = () => {
   const data = useStaticQuery(graphql`
     query CloudinaryImage {
-      cloudinaryMedia(public_id: { eq: "gatsby-source-cloudinary/11" }) {
+      cloudinaryMedia {
         secure_url
+        gatsbyImageData(
+          width: 300
+          aspectRatio: 1
+          transformations: ["e_grayscale", "c_fill"]
+        )
       }
     }
   `);
-  const clImage = data.cloudinaryMedia.secure_url;
+
+  const imageSrc = data.cloudinaryMedia.secure_url;
+  const image = getImage(data.cloudinaryMedia);
 
   return (
-    <div>
-      <div>
-        <img src={clImage} alt={'no alt :('} />
-      </div>
-    </div>
+    <>
+      <GatsbyImage image={image} alt="no alt :(" />
+      <img width="300" src={imageSrc} alt={'no alt :('} />
+    </>
   );
 };
+
+export default SingleImage;
 ```
 
 ## Installation
 
-Install the source plugin using either `npm` or `yarm`:
+Install the source plugin using either `npm` or `yarn`:
 
 ```bash
 npm install --save gatsby-source-cloudinary
 ```
 
+```bash
+yarn add --save gatsby-source-cloudinary
+```
+
+### Gatsby Plugin Image
+
+To use with [gatsby-plugin-image](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) you'll need to install it along with [gatsby-transformer-cloudinary](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/).
+
+> **NOTE:** Currently in beta, may be used with both Gatsby v3 and Gatsby v4
+
+```bash
+npm install --save gatsby-transformer-cloudinary@beta-v4 gatsby-plugin-image
+```
+
+```bash
+yarn add --save gatsby-transformer-cloudinary@beta-v4 gatsby-plugin-image
+```
+
 ### Cloudinary Credentials
 
 Cloudinary offers a generous free tier which is more than enough to bootstrap projects.
-Obtain your cloudname, key and secret from your cloudinary console when you signup at [Cloudinary.com](https://cloudinary.com).
+Obtain your cloudname, key, and secret from your cloudinary console when you signup at [Cloudinary.com](https://cloudinary.com).
 
 ### Environment configuration
 
 Store your `cloudName`, `apiKey` and `apiSecret` as environment variables for security.
-To do this, create a file in the root of the project named `.env`. Add your environment variables in it with:
+To do this, create a file in the project's root named `.env`. Add your environment variables in it with:
 
 ```
 CLOUDINARY_API_KEY=INSERT API KEY HERE
@@ -88,7 +117,7 @@ In your `gatsby-config.js` file, require and configure `dotenv` with:
 require('dotenv').config();
 ```
 
-There are several options to configuring `dotenv` to use different env files either in development or production. You can find that [here](https://www.npmjs.com/package/dotenv).
+There are several options to configure `dotenv` to use different env files either in development or production. You can find that [here](https://www.npmjs.com/package/dotenv).
 
 Add the `.env` file to `.gitignore` so it's not committed.
 
@@ -99,17 +128,27 @@ Ensure to configure the environment variables on deployment as well.
 In your `gatsby-config.js` file, include the plugin like this:
 
 ```js
-{
-    resolve:`gatsby-source-cloudinary`,
-    options: {
-    cloudName: process.env.CLOUDINARY_CLOUD_NAME,
-    apiKey: process.env.CLOUDINARY_API_KEY,
-    apiSecret: process.env.CLOUDINARY_API_SECRET,
-    resourceType: `image`,
-    type: `type Value`,
-    prefix: `abc-xyz/`
-    }
-}
+module.exports = {
+  plugins: [
+    {
+      resolve: `gatsby-source-cloudinary`,
+      options: {
+        cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+        apiKey: process.env.CLOUDINARY_API_KEY,
+        apiSecret: process.env.CLOUDINARY_API_SECRET,
+        resourceType: `image`,
+        maxResults: 22,
+      },
+    },
+    {
+      resolve: `gatsby-transformer-cloudinary`,
+      options: {
+        transformTypes: [`CloudinaryMedia`],
+      },
+    },
+    `gatsby-plugin-image`,
+  ],
+};
 ```
 
 ### Plugin options
@@ -121,7 +160,7 @@ You can find the plugin options in the table below.
 | `cloudName`    | string  | true     | n/a     | Cloud name of your Cloudinary account, can be obtained from your [Cloudinary console](https://cloudinary.com/console/). This should be stored and retrieved as an environment variable. |
 | `apiKey`       | string  | true     | na/a    | API Key of your Cloudinary account, can be obtained from your [Cloudinary console](https://cloudinary.com/console/). This should be stored and retrieved as an environment variable.    |
 | `apiSecret`    | string  | true     | n/a     | API Secret of your Cloudinary account, can be obtained from your [Cloudinary console](https://cloudinary.com/console/). This should be stored and retrieved as an environment variable. |
-| `resourceType` | string  | false    | image   | This is the type of file. Possible values: image, raw, video. Note: Use the video resource type for all video resources as well as for audio files, such as .mp3.                       |
+| `resourceType` | string  | false    | image   | This is the file type. Possible values: image, raw, video. Note: Use the video resource type for all video resources as well as for audio files, such as .mp3.                          |
 | `type`         | string  | false    | all     | This is the storage type: upload, private, authenticated, facebook, twitter, gplus, instagram_name, gravatar, youtube, hulu, vimeo, animoto, worldstarhiphop or dailymotion.            |
 | `maxResults`   | integer | false    | 10      | Max number of resources to return                                                                                                                                                       |
 | `tags`         | boolean | false    | false   | If true, include the list of tag names assigned to each resource                                                                                                                        |
@@ -134,7 +173,7 @@ An example `prefix` value is `gatsby-anime-videos/`. This will fetch only media 
 
 The `f_auto` and `q_auto` Cloudinary transformations are applied automatically to all media queries. This optimizes the delivered media quality and format.
 
-> All media files sourced from Cloudinary are done when Gatsby creates an optimized build, hence you will need to trigger a new production build whenever new media files are added directly on Cloudinary.
+> All media files sourced from Cloudinary are done when Gatsby creates an optimized build; hence you will need to trigger a new production build whenever new media files are added directly on Cloudinary.
 
 ## How to use
 
@@ -181,7 +220,7 @@ const Images = () => {
 
 ## Contribute
 
-Want to contribute to make this tool even better? Feel free to send in issues and pull requests on feature requests, fixes, bugs, typos, performance lapses or any other challenge faced with using this tool.
+Want to contribute to making this tool even better? Feel free to send in issues and pull requests on feature requests, fixes, bugs, typos, performance lapses, or any other challenge faced with using this tool.
 
 ## License
 
