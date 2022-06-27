@@ -1,10 +1,12 @@
 # Gatsby-Source-Cloudinary
 
-This source plugin queries media files from a Cloudinary account into `cloudinaryMedia` nodes in your Gatsby project.
+This source plugin queries media files from a Cloudinary account into `CloudinaryMedia` nodes in your Gatsby project.
 
 [See a live demo here](https://gsc-sample.netlify.com/)
 
 [Here's a tutorial on plugin usage](https://scotch.io/tutorials/handling-images-in-gatsby-with-high-performance)
+
+If support for the [gatsby-plugin-image](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) is needed add and configure the [gatsby-transformer-cloudinary](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/) plugin.
 
 ## Motivation
 
@@ -26,38 +28,65 @@ Looking to use the features of Gatsby-Image with Cloudinary optimized storage, t
 
 ## Example usage
 
-Here's a sample usage of the source plugin to create an image gallery from images stored on Cloudinary:
+Example showing use with and without [gatsby-plugin-image](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) + [ [gatsby-transformer-cloudinary](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/). The latter will add the `gatsbyImageData` resolver used below.
 
-```jsx harmony
+```js
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 const SingleImage = () => {
   const data = useStaticQuery(graphql`
     query CloudinaryImage {
-      cloudinaryMedia(public_id: { eq: "gatsby-source-cloudinary/11" }) {
+      cloudinaryMedia {
         secure_url
+        gatsbyImageData(
+          width: 300
+          aspectRatio: 1
+          transformations: ["e_grayscale", "c_fill"]
+        )
       }
     }
   `);
-  const clImage = data.cloudinaryMedia.secure_url;
+
+  const imageSrc = data.cloudinaryMedia.secure_url;
+  const image = getImage(data.cloudinaryMedia);
 
   return (
-    <div>
-      <div>
-        <img src={clImage} alt={'no alt :('} />
-      </div>
-    </div>
+    <>
+      <GatsbyImage image={image} alt="no alt :(" />
+      <img width="300" src={imageSrc} alt={'no alt :('} />
+    </>
   );
 };
+
+export default SingleImage;
 ```
 
 ## Installation
 
-Install the source plugin using either `npm` or `yarm`:
+Install the source plugin using either `npm` or `yarn`:
 
 ```bash
 npm install --save gatsby-source-cloudinary
+```
+
+```bash
+yarn add --save gatsby-source-cloudinary
+```
+
+### Gatsby Plugin Image
+
+To use with [gatsby-plugin-image](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) you'll need to install it along with [gatsby-transformer-cloudinary](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/).
+
+> **NOTE:** Currently in beta, may be used with both Gatsby v3 and Gatsby v4
+
+```bash
+npm install --save gatsby-transformer-cloudinary@beta-v4 gatsby-plugin-image
+```
+
+```bash
+yarn add --save gatsby-transformer-cloudinary@beta-v4 gatsby-plugin-image
 ```
 
 ### Cloudinary Credentials
@@ -99,17 +128,27 @@ Ensure to configure the environment variables on deployment as well.
 In your `gatsby-config.js` file, include the plugin like this:
 
 ```js
-{
-    resolve:`gatsby-source-cloudinary`,
-    options: {
-    cloudName: process.env.CLOUDINARY_CLOUD_NAME,
-    apiKey: process.env.CLOUDINARY_API_KEY,
-    apiSecret: process.env.CLOUDINARY_API_SECRET,
-    resourceType: `image`,
-    type: `type Value`,
-    prefix: `abc-xyz/`
-    }
-}
+module.exports = {
+  plugins: [
+    {
+      resolve: `gatsby-source-cloudinary`,
+      options: {
+        cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+        apiKey: process.env.CLOUDINARY_API_KEY,
+        apiSecret: process.env.CLOUDINARY_API_SECRET,
+        resourceType: `image`,
+        maxResults: 22,
+      },
+    },
+    {
+      resolve: `gatsby-transformer-cloudinary`,
+      options: {
+        transformTypes: [`CloudinaryMedia`],
+      },
+    },
+    `gatsby-plugin-image`,
+  ],
+};
 ```
 
 ### Plugin options
