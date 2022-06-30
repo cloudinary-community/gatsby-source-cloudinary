@@ -1,6 +1,6 @@
 {
   "name": "gatsby-source-cloudinary",
-  "version": "0.1.14",
+  "version": "0.2.0",
   "description": "Gatsby source plugin to fetch files from Cloudinary into Gatsby.",
   "main": "gatsby-node.js",
   "repository": "https://github.com/Chuloo/gatsby-source-cloudinary.git",
@@ -16,7 +16,7 @@
   "author": "Ugonna William Imoh",
   "license": "MIT",
   "dependencies": {
-    "cloudinary": "^1.11.0",
-    "lodash.snakecase": "^4.1.1"
+    "cloudinary": "^1.30.0",
+    "lodash": "^4.17.21"
   }
 }
