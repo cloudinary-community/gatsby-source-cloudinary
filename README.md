@@ -33,6 +33,7 @@ Example showing use with and without [gatsby-plugin-image](https://www.gatsbyjs.
 ```js
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
+// Optional usage of gatsby-plugin-image
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 const SingleImage = () => {
@@ -54,9 +55,8 @@ const SingleImage = () => {
 
   return (
     <>
-      <GatsbyImage image={image} alt="no alt :(" />
       <img width="300" src={imageSrc} alt={'no alt :('} />
-    </>
+      <GatsbyImage image={image} alt="no alt :(" />
   );
 };
 
@@ -140,6 +140,7 @@ module.exports = {
         maxResults: 22,
       },
     },
+    // Optional usage of gatsby-plugin-image
     {
       resolve: `gatsby-transformer-cloudinary`,
       options: {
