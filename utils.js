@@ -1,5 +1,5 @@
 const cloudinary = require('cloudinary').v2;
-const snakeCase = require('lodash.snakecase');
+const { snakeCase } = require('lodash');
 
 const DEFAULT_KEYS = [
   'resourceType',
