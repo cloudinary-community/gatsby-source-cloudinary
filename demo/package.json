@@ -1,0 +1,32 @@
+{
+  "name": "demo",
+  "private": true,
+  "description": "A simple demo to for gatsby-source-cloudinary",
+  "version": "0.1.0",
+  "dependencies": {
+    "gatsby": "^4.14.1",
+    "gatsby-source-cloudinary": "0.2.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "0BSD",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css}\"",
+    "start": "gatsby develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+  },
+  "bugs": {
+    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  }
+}
