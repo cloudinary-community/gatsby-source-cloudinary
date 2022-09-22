@@ -5,7 +5,9 @@
   "version": "0.1.0",
   "dependencies": {
     "gatsby": "^4.14.1",
+    "gatsby-plugin-image": "2.23.1",
     "gatsby-source-cloudinary": "0.2.0",
+    "gatsby-transformer-cloudinary": "3.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },

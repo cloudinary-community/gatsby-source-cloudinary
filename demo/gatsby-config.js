@@ -8,6 +8,9 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-plugin-image`,
+    },
+    {
       resolve: `gatsby-source-cloudinary`,
       options: {
         cloudName: process.env.CLOUDINARY_CLOUD_NAME,
@@ -16,9 +19,13 @@ module.exports = {
         resourceType: `image`,
         context: true,
         maxResults: 10,
-        // resultsPerPage: 500,
-        prefix: 'demo/animals',
-        // type: "upload",
+        prefix: process.env.CLOUDINARY_SOURCE_PREFIX,
+      },
+    },
+    {
+      resolve: `gatsby-transformer-cloudinary`,
+      options: {
+        transformTypes: ['CloudinaryMedia'],
       },
     },
   ],
