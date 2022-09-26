@@ -1,10 +1,24 @@
 import * as React from 'react';
+import { graphql, Link } from 'gatsby';
 
-const NotFoundPage = () => (
-  <main>
-    <h1>404: Not Found</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-  </main>
-);
+export default function NotFoundPage({ data }) {
+  return (
+    <main style={{ fontFamily: 'monospace', textAlign: 'center' }}>
+      <h1>{data.site.siteMetadata.title}</h1>
 
-export default NotFoundPage;
+      <h2>404: Not Found</h2>
+      <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+      <Link to="/">Go home</Link>
+    </main>
+  );
+}
+
+export const query = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`;

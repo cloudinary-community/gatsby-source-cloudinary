@@ -4,7 +4,7 @@ require('dotenv').config({
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Source Cloudinary Starter`,
+    title: `Gatsby Source Plugin Demo`,
   },
   plugins: [
     {

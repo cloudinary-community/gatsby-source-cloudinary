@@ -5,9 +5,7 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 export default function IndexPage({ data }) {
   return (
     <main style={{ fontFamily: 'monospace', textAlign: 'center' }}>
-      <header>
-        <h1>Gatsby Source Plugin Demo</h1>
-      </header>
+      <h1>{data.site.siteMetadata.title}</h1>
 
       <table>
         <colgroup>
@@ -80,6 +78,11 @@ export default function IndexPage({ data }) {
 
 export const query = graphql`
   query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
     allCloudinaryMedia {
       nodes {
         secure_url
