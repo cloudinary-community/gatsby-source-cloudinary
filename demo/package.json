@@ -1,0 +1,25 @@
+{
+  "name": "demo",
+  "private": true,
+  "description": "A simple demo of the gatsby-source-cloudinary plugin",
+  "version": "0.1.0",
+  "dependencies": {
+    "gatsby": "^4.14.1",
+    "gatsby-plugin-image": "2.23.1",
+    "gatsby-source-cloudinary": "0.2.0",
+    "gatsby-transformer-cloudinary": "3.0.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+  }
+}

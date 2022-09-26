@@ -1,22 +1,17 @@
 {
-  "name": "gatsby-source-cloudinary",
-  "version": "0.2.0",
-  "description": "Gatsby source plugin to fetch files from Cloudinary into Gatsby.",
-  "main": "gatsby-node.js",
-  "repository": "https://github.com/Chuloo/gatsby-source-cloudinary.git",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "gatsby",
-    "gatsby-plugin",
-    "cloudinary",
-    "gatsby-source-cloudinary"
+  "private": true,
+  "workspaces": [
+    "plugin",
+    "demo"
   ],
-  "author": "Ugonna William Imoh",
-  "license": "MIT",
-  "dependencies": {
-    "cloudinary": "^1.30.0",
-    "lodash": "^4.17.21"
+  "scripts": {
+    "develop": "yarn workspace demo develop",
+    "build": "yarn workspace demo build",
+    "serve": "yarn workspace demo serve",
+    "clean": "yarn workspace demo clean",
+    "format": "prettier --write \".\""
+  },
+  "devDependencies": {
+    "prettier": "^2.6.2"
   }
 }
