@@ -8,7 +8,8 @@
     "develop": "yarn workspace demo develop",
     "build": "yarn workspace demo build",
     "serve": "yarn workspace demo serve",
-    "clean": "yarn workspace demo clean"
+    "clean": "yarn workspace demo clean",
+    "format": "prettier --write \".\""
   },
   "devDependencies": {
     "prettier": "^2.6.2"
