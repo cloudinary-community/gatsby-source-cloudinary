@@ -4,79 +4,77 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 export default function IndexPage({ data }) {
   return (
-    <div style={{ fontFamily: 'monospace', textAlign: 'center' }}>
+    <main style={{ fontFamily: 'monospace', textAlign: 'center' }}>
       <header>
         <h1>Gatsby Source Plugin Demo</h1>
       </header>
 
-      <main>
-        <table>
-          <colgroup>
-            <col style={{ width: '20%', backgroundColor: 'ghostwhite' }} />
-            <col
-              span="4"
-              style={{
-                width: '20%',
-                backgroundColor: 'floralwhite',
-              }}
-            />
-          </colgroup>
+      <table>
+        <colgroup>
+          <col style={{ width: '20%', backgroundColor: 'ghostwhite' }} />
+          <col
+            span="4"
+            style={{
+              width: '20%',
+              backgroundColor: 'floralwhite',
+            }}
+          />
+        </colgroup>
 
-          <tr>
-            <th>gatsby-source-cloudinary</th>
-            <th colSpan={5}>
-              gatsby-source-cloudinary + gatsby-transformer-cloudinary +
-              gatsby-plugin-image
-            </th>
-          </tr>
+        <tr>
+          <th>gatsby-source-cloudinary</th>
+          <th colSpan={5}>
+            gatsby-source-cloudinary + gatsby-transformer-cloudinary +
+            gatsby-plugin-image
+          </th>
+        </tr>
 
-          <tr>
-            <th>Plain</th>
-            <th>Grayscle</th>
-            <th>Tint</th>
-            <th>Ken Burns</th>
-            <th>Plain</th>
-          </tr>
+        <tr>
+          <th>Plain</th>
+          <th>Grayscle</th>
+          <th>Tint</th>
+          <th>Ken Burns</th>
+          <th>Plain</th>
+        </tr>
 
-          {data.allCloudinaryMedia.nodes.map((media) => {
-            const { secure_url } = media;
-            const example1Image = getImage(media.example1ImageData);
-            const example2Image = getImage(media.example2ImageData);
-            const example3Image = getImage(media.example3ImageData);
-            const gatsbyImage = getImage(media);
+        {data.allCloudinaryMedia.nodes.map((media) => {
+          const { secure_url } = media;
+          const example1Image = getImage(media.example1ImageData);
+          const example2Image = getImage(media.example2ImageData);
+          const example3Image = getImage(media.example3ImageData);
+          const gatsbyImage = getImage(media);
 
-            return (
-              <tr>
-                <td>
-                  <img
-                    width="300"
-                    style={{ maxWidth: '100%', display: 'block' }}
-                    src={secure_url}
-                    alt="no alt :("
-                  />
-                </td>
-                <td>
-                  <GatsbyImage
-                    style={{ maxWidth: '100%' }}
-                    image={example1Image}
-                    alt="no alt"
-                  />
-                </td>
-                <td>
-                  <GatsbyImage image={example2Image} alt="no alt" />
-                </td>
-                <td>
-                  <GatsbyImage image={example3Image} alt="no alt" />
-                </td>
-                <td>
-                  <GatsbyImage image={gatsbyImage} alt="no alt" />
-                </td>
-              </tr>
-            );
-          })}
-        </table>
-      </main>
-    </div>
+          return (
+            <tr>
+              <td>
+                <img
+                  width="300"
+                  style={{ maxWidth: '100%', display: 'block' }}
+                  src={secure_url}
+                  alt="no alt :("
+                />
+              </td>
+              <td>
+                <GatsbyImage
+                  style={{ maxWidth: '100%' }}
+                  image={example1Image}
+                  alt="no alt"
+                />
+              </td>
+              <td>
+                <GatsbyImage image={example2Image} alt="no alt" />
+              </td>
+              <td>
+                <GatsbyImage image={example3Image} alt="no alt" />
+              </td>
+              <td>
+                <GatsbyImage image={gatsbyImage} alt="no alt" />
+              </td>
+            </tr>
+          );
+        })}
+      </table>
+    </main>
   );
 }
 
