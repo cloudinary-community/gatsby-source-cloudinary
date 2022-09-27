@@ -10,8 +10,11 @@ exports.pluginOptionsSchema = ({ Joi }) => {
     cloudName: Joi.string().required(),
     apiKey: Joi.string().required(),
     apiSecret: Joi.string().required(),
-    resourceType: Joi.number().integer().positive().default(10),
-    resultsPerPage: Joi.string().default('image'),
+    resourceType: Joi.string().default('image'),
+    resultsPerPage: Joi.number()
+      .integer()
+      .positive()
+      .default(Joi.ref('maxResults')),
     type: Joi.string().default('all'),
     maxResults: Joi.number().integer().positive().default(10),
     tags: Joi.boolean().default(false),
