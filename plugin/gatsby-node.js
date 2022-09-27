@@ -3,20 +3,18 @@ const { newCloudinary, getResourceOptions } = require('./utils');
 const REPORTER_PREFIX = `gatsby-source-cloudinary`;
 const NODE_TYPE = `CloudinaryMedia`;
 
-// Validation of configured plugin options the Gatsby way
-
 exports.pluginOptionsSchema = ({ Joi }) => {
   return Joi.object({
     cloudName: Joi.string().required(),
     apiKey: Joi.string().required(),
     apiSecret: Joi.string().required(),
     resourceType: Joi.string().default('image'),
+    type: Joi.string().default('all'),
+    maxResults: Joi.number().integer().positive().default(10),
     resultsPerPage: Joi.number()
       .integer()
       .positive()
       .default(Joi.ref('maxResults')),
-    type: Joi.string().default('all'),
-    maxResults: Joi.number().integer().positive().default(10),
     tags: Joi.boolean().default(false),
     prefix: Joi.string(),
     context: Joi.boolean(),
