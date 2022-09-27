@@ -9,7 +9,7 @@ exports.pluginOptionsSchema = ({ Joi }) => {
     apiKey: Joi.string().required(),
     apiSecret: Joi.string().required(),
     resourceType: Joi.string().default('image'),
-    type: Joi.string().default('all'),
+    type: Joi.string(),
     maxResults: Joi.number().integer().positive().default(10),
     resultsPerPage: Joi.number()
       .integer()
