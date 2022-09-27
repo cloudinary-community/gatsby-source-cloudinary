@@ -66,7 +66,6 @@ describe('pluginOptionsSchema', () => {
       maxResults: 10,
       resultsPerPage: 10,
       tags: false,
-      type: 'all',
     });
   });
 });
