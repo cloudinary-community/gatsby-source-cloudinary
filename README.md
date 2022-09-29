@@ -16,43 +16,6 @@ Imagine your website quickly serving a modern image format like AVIF or WebP?
 
 Let this plugin automatically serve the most modern format your users browser can support on her device.
 
-## Example usage
-
-Example showing use with and without [gatsby-plugin-image](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) + [ [gatsby-transformer-cloudinary](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/). The latter will add the `gatsbyImageData` resolver used below.
-
-```js
-import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
-// Optional usage of gatsby-plugin-image
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
-
-const SingleImage = () => {
-  const data = useStaticQuery(graphql`
-    query CloudinaryImage {
-      cloudinaryMedia {
-        secure_url
-        gatsbyImageData(
-          width: 300
-          aspectRatio: 1
-          transformations: ["e_grayscale", "c_fill"]
-        )
-      }
-    }
-  `);
-
-  const imageSrc = data.cloudinaryMedia.secure_url;
-  const image = getImage(data.cloudinaryMedia);
-
-  return (
-    <>
-      <img width="300" src={imageSrc} alt={'no alt :('} />
-      <GatsbyImage image={image} alt="no alt :(" />
-  );
-};
-
-export default SingleImage;
-```
-
 ## Installation
 
 Install the source plugin using either `npm` or `yarn`:
@@ -151,7 +114,7 @@ module.exports = {
 Once a development server is started using `gatsby develop`, all media assets configured in the plugin are available as `cloudinaryMedia` and `allCloudinaryMedia` in graphQL.
 These can run in a Page Query or StaticQuery.
 
-```jsx harmony
+```js
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 
@@ -182,6 +145,43 @@ const Images = () => {
   );
 };
 ```
+
+## Example usage with gatsby-plugin-image
+
+Example showing use with [gatsby-plugin-image](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) + [ [gatsby-transformer-cloudinary](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/). The latter will add the `gatsbyImageData` resolver used below.
+
+```js
+import React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+
+const SingleImage = () => {
+  const data = useStaticQuery(graphql`
+    query CloudinaryImage {
+      cloudinaryMedia {
+        secure_url
+        gatsbyImageData(
+          width: 300
+          aspectRatio: 1
+          transformations: ["e_grayscale", "c_fill"]
+        )
+      }
+    }
+  `);
+
+  const imageSrc = data.cloudinaryMedia.secure_url;
+  const image = getImage(data.cloudinaryMedia);
+
+  return (
+    <>
+      <img width="300" src={imageSrc} alt={'no alt :('} />
+      <GatsbyImage image={image} alt="no alt :(" />
+  );
+};
+
+export default SingleImage;
+```
+
 
 ### Plugin options
 
