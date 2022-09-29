@@ -79,14 +79,13 @@ yarn add --save gatsby-source-cloudinary
 
 To use with [gatsby-plugin-image](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) you'll need to install it along with [gatsby-transformer-cloudinary](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/).
 
-> **NOTE:** Currently in beta, may be used with both Gatsby v3 and Gatsby v4
 
 ```bash
-npm install --save gatsby-transformer-cloudinary@beta-v4 gatsby-plugin-image
+npm install --save gatsby-transformer-cloudinary gatsby-plugin-image
 ```
 
 ```bash
-yarn add --save gatsby-transformer-cloudinary@beta-v4 gatsby-plugin-image
+yarn add --save gatsby-transformer-cloudinary gatsby-plugin-image
 ```
 
 ### Cloudinary Credentials
