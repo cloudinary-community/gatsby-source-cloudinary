@@ -8,23 +8,13 @@ This source plugin queries media files from a Cloudinary account into `Cloudinar
 
 If support for the [gatsby-plugin-image](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) is needed add and configure the [gatsby-transformer-cloudinary](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/) plugin.
 
-## Motivation
+## Stop slowing down your user's experience with unmodern image formats
 
-Gatsby offers the ability to develop high-performance web pages with a rich developer experience and declarative data fetching Layer with GraphQL.
-Cloudinary provides a robust solution to manage media assets, from storage, and optimized delivery, to media transformations. Extending the powers of Gatsby with the use of gatsby-source-cloudinary affords the best of both worlds, to allow users to store media assets on Cloudinary,
-leveraging Cloudinary's powerful optimization and transformation capabilities in fast sites built with Gatsby.
+Are you sick of your website slowly serving an unmodern image format like JPEG to your favourite user?
 
-While Cloudinary images with on-the-fly transformations can be used during runtime in Gatsby, gatsby-source-cloudinary utilizes the build optimizations of Gatsby.
+Imagine your website quickly serving a modern image format like AVIF or WebP?
 
-## Features
-
-- Store media files on Cloudinary and deliver through a secure CDN to your Gatsby site
-- Average of over 60% image optimizations using `f_auto` and `q_auto` applied by default.
-- Query Cloudinary images in Gatsby's data layer using GraphQL.
-- Utilize Cloudinary's robust transformation suite in media files on a Gatsby site.
-- Manage media assets of an application entirely on Cloudinary rather than directly in the codebase.
-
-Looking to use the features of Gatsby-Image with Cloudinary optimized storage, transformations, and delivery? Check out the [gatsby-transformer-cloudinary](https://www.npmjs.com/package/gatsby-transformer-cloudinary) plugin.
+Let this plugin automatically serve the most modern format your users browser can support on her device.
 
 ## Example usage
 
@@ -106,7 +96,12 @@ CLOUDINARY_CLOUD_NAME=INSERT CLOUDNAME HERE
 
 Install `dotenv` in your project with:
 
+
+```bash
+npm install dotenv
 ```
+
+```bash
 yarn add dotenv
 ```
 
@@ -151,30 +146,6 @@ module.exports = {
 };
 ```
 
-### Plugin options
-
-You can find the plugin options in the table below.
-
-| option         | type    | required | default | description                                                                                                                                                                                                         |
-| -------------- | ------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `cloudName`    | string  | true     | n/a     | Cloud name of your Cloudinary account, can be obtained from your [Cloudinary console](https://cloudinary.com/console/). This should be stored and retrieved as an environment variable.                             |
-| `apiKey`       | string  | true     | na/a    | API Key of your Cloudinary account, can be obtained from your [Cloudinary console](https://cloudinary.com/console/). This should be stored and retrieved as an environment variable.                                |
-| `apiSecret`    | string  | true     | n/a     | API Secret of your Cloudinary account, can be obtained from your [Cloudinary console](https://cloudinary.com/console/). This should be stored and retrieved as an environment variable.                             |
-| `resourceType` | string  | false    | image   | This is the file type. Possible values: image, raw, video. Note: Use the video resource type for all video resources as well as for audio files, such as .mp3.                                                      |
-| `type`         | string  | false    | n/a     | This is the storage type: upload, private, authenticated, facebook, twitter, gplus, instagram_name, gravatar, youtube, hulu, vimeo, animoto, worldstarhiphop or dailymotion. When non given, all types are sourced. |
-| `maxResults`   | integer | false    | 10      | Max number of resources to return                                                                                                                                                                                   |
-| `tags`         | boolean | false    | false   | If true, include the list of tag names assigned to each resource                                                                                                                                                    |
-| `prefix`       | string  | false    | n/a     | Find all resources with a public ID that starts with the given prefix. The resources are sorted by public ID in the response.                                                                                       |
-| `context`      | boolean | false    | n/a     | Specifies if the context data for the image should be returned. This is useful for retrieving `alt` text or custom metadata in key:value pairs for an image set on Cloudinary.                                      |
-
-With `prefix`, you can source only media files from a specific folder. However, you will need to specify `type` and `resourceType` in the config options.
-
-An example `prefix` value is `gatsby-anime-videos/`. This will fetch only media files with public ids beginning with `gatsby-anime-videos/*`. Example: `gatsby-anime-videos/naruto.mp4`
-
-The `f_auto` and `q_auto` Cloudinary transformations are applied automatically to all media queries. This optimizes the delivered media quality and format.
-
-> All media files sourced from Cloudinary are done when Gatsby creates an optimized build; hence you will need to trigger a new production build whenever new media files are added directly on Cloudinary.
-
 ## How to use
 
 Once a development server is started using `gatsby develop`, all media assets configured in the plugin are available as `cloudinaryMedia` and `allCloudinaryMedia` in graphQL.
@@ -211,6 +182,48 @@ const Images = () => {
   );
 };
 ```
+
+### Plugin options
+
+You can find the plugin options in the table below.
+
+| option         | type    | required | default | description                                                                                                                                                                                                         |
+| -------------- | ------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `cloudName`    | string  | true     | n/a     | Cloud name of your Cloudinary account, can be obtained from your [Cloudinary console](https://cloudinary.com/console/). This should be stored and retrieved as an environment variable.                             |
+| `apiKey`       | string  | true     | na/a    | API Key of your Cloudinary account, can be obtained from your [Cloudinary console](https://cloudinary.com/console/). This should be stored and retrieved as an environment variable.                                |
+| `apiSecret`    | string  | true     | n/a     | API Secret of your Cloudinary account, can be obtained from your [Cloudinary console](https://cloudinary.com/console/). This should be stored and retrieved as an environment variable.                             |
+| `resourceType` | string  | false    | image   | This is the file type. Possible values: image, raw, video. Note: Use the video resource type for all video resources as well as for audio files, such as .mp3.                                                      |
+| `type`         | string  | false    | n/a     | This is the storage type: upload, private, authenticated, facebook, twitter, gplus, instagram_name, gravatar, youtube, hulu, vimeo, animoto, worldstarhiphop or dailymotion. When non given, all types are sourced. |
+| `maxResults`   | integer | false    | 10      | Max number of resources to return                                                                                                                                                                                   |
+| `tags`         | boolean | false    | false   | If true, include the list of tag names assigned to each resource                                                                                                                                                    |
+| `prefix`       | string  | false    | n/a     | Find all resources with a public ID that starts with the given prefix. The resources are sorted by public ID in the response.                                                                                       |
+| `context`      | boolean | false    | n/a     | Specifies if the context data for the image should be returned. This is useful for retrieving `alt` text or custom metadata in key:value pairs for an image set on Cloudinary.                                      |
+
+With `prefix`, you can source only media files from a specific folder. However, you will need to specify `type` and `resourceType` in the config options.
+
+An example `prefix` value is `gatsby-anime-videos/`. This will fetch only media files with public ids beginning with `gatsby-anime-videos/*`. Example: `gatsby-anime-videos/naruto.mp4`
+
+The `f_auto` and `q_auto` Cloudinary transformations are applied automatically to all media queries. This optimizes the delivered media quality and format.
+
+> All media files sourced from Cloudinary are done when Gatsby creates an optimized build; hence you will need to trigger a new production build whenever new media files are added directly on Cloudinary.
+
+## Motivation
+
+Gatsby offers the ability to develop high-performance web pages with a rich developer experience and declarative data fetching Layer with GraphQL.
+Cloudinary provides a robust solution to manage media assets, from storage, and optimized delivery, to media transformations. Extending the powers of Gatsby with the use of gatsby-source-cloudinary affords the best of both worlds, to allow users to store media assets on Cloudinary,
+leveraging Cloudinary's powerful optimization and transformation capabilities in fast sites built with Gatsby.
+
+While Cloudinary images with on-the-fly transformations can be used during runtime in Gatsby, gatsby-source-cloudinary utilizes the build optimizations of Gatsby.
+
+## Features
+
+- Store media files on Cloudinary and deliver through a secure CDN to your Gatsby site
+- Average of over 60% image optimizations using `f_auto` and `q_auto` applied by default.
+- Query Cloudinary images in Gatsby's data layer using GraphQL.
+- Utilize Cloudinary's robust transformation suite in media files on a Gatsby site.
+- Manage media assets of an application entirely on Cloudinary rather than directly in the codebase.
+
+Looking to use the features of Gatsby-Image with Cloudinary optimized storage, transformations, and delivery? Check out the [gatsby-transformer-cloudinary](https://www.npmjs.com/package/gatsby-transformer-cloudinary) plugin.
 
 ## Other Resources
 
