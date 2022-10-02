@@ -1,24 +1,22 @@
-# Gatsby-Source-Cloudinary
+# 🦄 Gatsby-Source-Cloudinary
 
-This source plugin queries media files from a Cloudinary account into `CloudinaryMedia` nodes in your Gatsby project.
+🖼 Our source plugin queries media files from your Cloudinary account into `CloudinaryMedia` nodes in your Gatsby project.
 
-[See a live demo here](https://gsc-sample.netlify.com/)
+🖼 Compatible with gatsby-plugin-image.
 
-[Here's a tutorial on plugin usage](https://scotch.io/tutorials/handling-images-in-gatsby-with-high-performance)
+## 🐢 Are you wasting your user's time with JPEGs?
 
-If support for the [gatsby-plugin-image](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) is needed add and configure the [gatsby-transformer-cloudinary](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/) plugin.
+🤢 Are you sick of your website slowly serving unmodern image formats like JPEG or PNG to your user's device? 🤮
 
-## Stop slowing down your user's experience with unmodern image formats
+## 🏃‍♀️ Imagine serving WebP, blazingly fast!
 
-Are you sick of your website slowly serving an unmodern image format like JPEG to your favourite user?
+🚀 Imagine serving AVIF. Imagine serving the most modern image format your user's browser can support on her device.
 
-Imagine your website quickly serving a modern image format like AVIF or WebP?
+## 🦄 Let our Cloudinary plugin do her automagic on you images
 
-Let this plugin automatically serve the most modern format your users browser can support on her device.
+And you'll get more time to do YOUR best work on your code.
 
-## Installation
-
-Install the source plugin using either `npm` or `yarn`:
+## 1. Install plugin 🦄
 
 ```bash
 npm install --save gatsby-source-cloudinary
@@ -28,9 +26,9 @@ npm install --save gatsby-source-cloudinary
 yarn add --save gatsby-source-cloudinary
 ```
 
-### Gatsby Plugin Image
+### 2. Gatsby Plugin Image 🖼️
 
-To use with [gatsby-plugin-image](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) you'll need to install it along with [gatsby-transformer-cloudinary](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/).
+To use [gatsby-plugin-image](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) you'll need to install it along with [gatsby-transformer-cloudinary](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/).
 
 
 ```bash
@@ -41,15 +39,15 @@ npm install --save gatsby-transformer-cloudinary gatsby-plugin-image
 yarn add --save gatsby-transformer-cloudinary gatsby-plugin-image
 ```
 
-### Cloudinary Credentials
+### 3. Cloudinary cloudname, key and secret 🤫
 
 Cloudinary offers a generous free tier which is more than enough to bootstrap projects.
-Obtain your cloudname, key, and secret from your cloudinary console when you signup at [Cloudinary.com](https://cloudinary.com).
+Get your cloudname, key and secret from your cloudinary console when you signup at [Cloudinary.com](https://cloudinary.com).
 
-### Environment configuration
+### 4. Use .env.development 🔑
 
 Store your `cloudName`, `apiKey` and `apiSecret` as environment variables for security.
-To do this, create a file in the project's root named `.env`. Add your environment variables in it with:
+Create an `.env.development` file in the project's root and add your environment variables.
 
 ```
 CLOUDINARY_API_KEY=INSERT API KEY HERE
@@ -70,17 +68,17 @@ yarn add dotenv
 
 In your `gatsby-config.js` file, require and configure `dotenv` with:
 
-```
+```js
 require('dotenv').config();
 ```
 
 There are several options to configure `dotenv` to use different env files either in development or production. You can find that [here](https://www.npmjs.com/package/dotenv).
 
-Add the `.env` file to `.gitignore` so it's not committed.
+Add the `.env.development` file to `.gitignore` so it's not committed.
 
-Ensure to configure the environment variables on deployment as well.
+### 5. Configure the environment variables on deployment.
 
-### Plugin setup
+### 6. Include your new plugin in `gatsby-config.js` 🦄
 
 In your `gatsby-config.js` file, include the plugin like this:
 
@@ -109,10 +107,13 @@ module.exports = {
 };
 ```
 
-## How to use
+## 7. How to use 💅
 
-Once a development server is started using `gatsby develop`, all media assets configured in the plugin are available as `cloudinaryMedia` and `allCloudinaryMedia` in graphQL.
+Run `gatsby develop` and all media assets configured in the plugin are now automagically 🌟 available as `cloudinaryMedia` and `allCloudinaryMedia` in graphQL.
+
 These can run in a Page Query or StaticQuery.
+
+Create your beautiful and accessible website or app 💅
 
 ```js
 import React from 'react';
@@ -146,9 +147,9 @@ const Images = () => {
 };
 ```
 
-## Example usage with gatsby-plugin-image
+## Example usage with gatsby-plugin-image 🖼️
 
-Example showing use with [gatsby-plugin-image](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) + [ [gatsby-transformer-cloudinary](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/). The latter will add the `gatsbyImageData` resolver used below.
+Example with [gatsby-plugin-image](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) + [ [gatsby-transformer-cloudinary](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/). gatsby-plugin-image will add the `gatsbyImageData` resolver used below.
 
 ```js
 import React from 'react';
@@ -183,7 +184,7 @@ export default SingleImage;
 ```
 
 
-### Plugin options
+### Plugin options 🔌
 
 You can find the plugin options in the table below.
 
@@ -231,7 +232,7 @@ Looking to use the features of Gatsby-Image with Cloudinary optimized storage, t
 - [Try the gatsby-transformer-cloudinary plugin to utilize the power of gatsby-image and cloudinary](https://www.npmjs.com/package/gatsby-transformer-cloudinary)
 - [Using Cloudinary image service for media optimization](https://www.gatsbyjs.org/docs/using-cloudinary-image-service/)
 
-## Contribute
+## Contribute 🏴‍☠️
 
 Want to contribute to making this tool even better? Feel free to send in issues and pull requests on feature requests, fixes, bugs, typos, performance lapses, or any other challenge faced with using this tool.
 
