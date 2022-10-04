@@ -6,15 +6,7 @@
 
 ## 🐢 Are you wasting your user's time with JPEGs?
 
-🤢 Are you sick of your website slowly serving unmodern image formats like JPEG or PNG to your user's device? 🤮
-
-## 🏃‍♀️ Imagine serving WebP, blazingly fast!
-
-🚀 Imagine serving AVIF. Imagine serving the most modern image format your user's browser can support on her device.
-
-## 🦄 Let our Cloudinary plugin do her automagic on you images
-
-And you'll get more time to do YOUR best work on your code.
+🏃‍♀️ Imagine serving AVIF. Or WebP? Imagine serving the most modern image format your user's browser can support on her device.
 
 ## 1. Install plugin 🦄
 
@@ -56,7 +48,6 @@ CLOUDINARY_CLOUD_NAME=INSERT CLOUDNAME HERE
 ```
 
 Install `dotenv` in your project with:
-
 
 ```bash
 npm install dotenv
@@ -149,7 +140,7 @@ const Images = () => {
 
 ## Example usage with gatsby-plugin-image 🖼️
 
-Example with [gatsby-plugin-image](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) + [ [gatsby-transformer-cloudinary](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/). gatsby-plugin-image will add the `gatsbyImageData` resolver used below.
+Example with [gatsby-plugin-image](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) + [gatsby-transformer-cloudinary](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/). gatsby-plugin-image will add the `gatsbyImageData` resolver used below.
 
 ```js
 import React from 'react';
