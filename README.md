@@ -4,9 +4,7 @@
 
 🖼 Compatible with gatsby-plugin-image.
 
-## 🐢 Are you wasting your user's time with JPEGs?
-
-🏃‍♀️ Imagine serving AVIF. Or WebP? Imagine serving the most modern image format your user's browser can support on her device.
+🦄 Automagically serves the most modern image format your user's browser can support on her device. Like AVIF or WebP!
 
 ## 1. Install plugin 🦄
 
@@ -31,15 +29,14 @@ npm install --save gatsby-transformer-cloudinary gatsby-plugin-image
 yarn add --save gatsby-transformer-cloudinary gatsby-plugin-image
 ```
 
-### 3. Cloudinary cloudname, key and secret 🤫
+### 3. Cloudname, API key and API secret 🤫
 
-Cloudinary offers a generous free tier which is more than enough to bootstrap projects.
-Get your cloudname, key and secret from your cloudinary console when you signup at [Cloudinary.com](https://cloudinary.com).
+Cloudinary offers you a generous free tier, more than enough to bootstrap projects.
+Get your cloudname, API key and API secret from your [cloudinary console](https://cloudinary.com/console/) when you signup at [Cloudinary.com](https://cloudinary.com).
 
 ### 4. Use .env.development 🔑
 
-Store your `cloudName`, `apiKey` and `apiSecret` as environment variables for security.
-Create an `.env.development` file in the project's root and add your environment variables.
+Create a `.env.development` file in your project's root and add your `cloudName`, `apiKey` and `apiSecret`.
 
 ```
 CLOUDINARY_API_KEY=INSERT API KEY HERE
@@ -47,7 +44,7 @@ CLOUDINARY_API_SECRET=INSERT API SECRET HERE
 CLOUDINARY_CLOUD_NAME=INSERT CLOUDNAME HERE
 ```
 
-Install `dotenv` in your project with:
+Install `dotenv` in your project.
 
 ```bash
 npm install dotenv
@@ -57,21 +54,23 @@ npm install dotenv
 yarn add dotenv
 ```
 
-In your `gatsby-config.js` file, require and configure `dotenv` with:
+In your `gatsby-config.js` file, require and configure `dotenv`.
 
 ```js
-require('dotenv').config();
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
 ```
 
-There are several options to configure `dotenv` to use different env files either in development or production. You can find that [here](https://www.npmjs.com/package/dotenv).
+You can find other ways to configure `dotenv` and to use different env files either in development or production. You can read more about [dotenv here](https://www.npmjs.com/package/dotenv).
 
-Add the `.env.development` file to `.gitignore` so it's not committed.
+Don't commit your `.env.development` file, add it to `.gitignore` instead.
 
-### 5. Configure the environment variables on deployment.
+### 5. Configure your environment variables on deployment 🚀
 
-### 6. Include your new plugin in `gatsby-config.js` 🦄
+### 6. Include your plugin in `gatsby-config.js` 🦄
 
-In your `gatsby-config.js` file, include the plugin like this:
+In your `gatsby-config.js` file, include the plugin.
 
 ```js
 module.exports = {
@@ -199,25 +198,24 @@ The `f_auto` and `q_auto` Cloudinary transformations are applied automatically t
 
 > All media files sourced from Cloudinary are done when Gatsby creates an optimized build; hence you will need to trigger a new production build whenever new media files are added directly on Cloudinary.
 
-## Motivation
+## Motivation 🏃‍♀️
 
 Gatsby offers the ability to develop high-performance web pages with a rich developer experience and declarative data fetching Layer with GraphQL.
-Cloudinary provides a robust solution to manage media assets, from storage, and optimized delivery, to media transformations. Extending the powers of Gatsby with the use of gatsby-source-cloudinary affords the best of both worlds, to allow users to store media assets on Cloudinary,
-leveraging Cloudinary's powerful optimization and transformation capabilities in fast sites built with Gatsby.
+Cloudinary provides a robust solution to manage media assets, from storage, and optimized delivery, to media transformations. Extending the powers of Gatsby with the use of gatsby-source-cloudinary affords the best of both worlds, to allow users to store media assets on Cloudinary, leveraging Cloudinary's powerful optimization and transformation capabilities in fast sites built with Gatsby.
 
 While Cloudinary images with on-the-fly transformations can be used during runtime in Gatsby, gatsby-source-cloudinary utilizes the build optimizations of Gatsby.
 
-## Features
+## Features 🦄
 
-- Store media files on Cloudinary and deliver through a secure CDN to your Gatsby site
+- Store media files on Cloudinary and deliver them through a secure CDN to your Gatsby site
 - Average of over 60% image optimizations using `f_auto` and `q_auto` applied by default.
 - Query Cloudinary images in Gatsby's data layer using GraphQL.
 - Utilize Cloudinary's robust transformation suite in media files on a Gatsby site.
 - Manage media assets of an application entirely on Cloudinary rather than directly in the codebase.
 
-Looking to use the features of Gatsby-Image with Cloudinary optimized storage, transformations, and delivery? Check out the [gatsby-transformer-cloudinary](https://www.npmjs.com/package/gatsby-transformer-cloudinary) plugin.
+Looking to use the features of gatsby-plugin-image with Cloudinary optimized storage, transformations, and delivery? Check out the [gatsby-transformer-cloudinary](https://www.npmjs.com/package/gatsby-transformer-cloudinary) plugin.
 
-## Other Resources
+## Other Resources 🧐
 
 - [Cloudinary image transformation reference](https://cloudinary.com/documentation/image_transformation_reference)
 - [Try the gatsby-transformer-cloudinary plugin to utilize the power of gatsby-image and cloudinary](https://www.npmjs.com/package/gatsby-transformer-cloudinary)
@@ -225,8 +223,8 @@ Looking to use the features of Gatsby-Image with Cloudinary optimized storage, t
 
 ## Contribute 🏴‍☠️
 
-Want to contribute to making this tool even better? Feel free to send in issues and pull requests on feature requests, fixes, bugs, typos, performance lapses, or any other challenge faced with using this tool.
+Want to contribute to making our plugin even better? Feel free to send in issues and pull requests on feature requests, fixes, bugs, typos, performance lapses, or any other challenge faced with using our plugin.
 
-## License
+## License 👑
 
 MIT
