@@ -1,6 +1,6 @@
 # Gatsby Source Cloudinary
 
-A Gatsby source plugin to pull data from Cloudinary into the Gatsby data layer. For each media file found a `CloudinaryMedia` node is created.
+Pull data from your Cloudinary account into the Gatsby data layer with `gatsby-source-cloudinary`. Creates a `CloudinaryMedia` node for each media file found.
 
 - Compatible with [`gatsby-plugin-image`](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) when used in combination with [`gatsby-transformer-cloudinary`](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/).
 - To upload images already in the Gatsby data layer (such as local files) to Cloudinary use [`gatsby-transformer-cloudinary`](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/).
@@ -23,7 +23,7 @@ yarn add gatsby-source-cloudinary
 
 ### Configure
 
-Add `gatsby-source-cloudinary` to the plugins array in your `gatsby-config.js` file.
+Add `gatsby-source-cloudinary` to the plugin array in your `gatsby-config.js` file.
 
 ```js
 module.exports = {
@@ -75,7 +75,7 @@ export const query = graphql`
 
 ## 🖼️ Usage with Gatsby Image
 
-To use [`gatsby-plugin-image`](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) the [`gatsby-transformer-cloudinary`](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/) is also needed.
+To use [`gatsby-plugin-image`](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) with your `CloudinaryMedia` nodes, you need the [`gatsby-transformer-cloudinary`](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/) to supply the `gatsbyImageData` resolver.
 
 ### Install
 
@@ -151,7 +151,7 @@ export const query = graphql`
 
 ### `cloudName` (required)
 
-Cloud name of your Cloudinary account, can be obtained from your [Cloudinary console](https://cloudinary.com/console/).
+The Cloud Name of your Cloudinary account. You'll find it in your [Cloudinary console](https://cloudinary.com/console/).
 **Type:** String
 **Required:** ✅ Yes
 **Default:** n/a
@@ -159,14 +159,14 @@ Cloud name of your Cloudinary account, can be obtained from your [Cloudinary con
 
 ### `apiKey` (required)
 
-API Key of your Cloudinary account, can be obtained from your [Cloudinary console](https://cloudinary.com/console/).
+The API Key of your Cloudinary account. You'll find it in your [Cloudinary console](https://cloudinary.com/console/).
 **Type:** String
 **Default:** n/a
 **Note:** This should be stored and retrieved as an environment variable.
 
 ### `apiSecret` (required)
 
-API Secret of your Cloudinary account, can be obtained from your [Cloudinary console](https://cloudinary.com/console/).
+The API Secret of your Cloudinary account. You'll find it in your [Cloudinary console](https://cloudinary.com/console/).
 **Type:** String
 **Default:** n/a
 **Note:** This should be stored and retrieved as an environment variable.
@@ -178,16 +178,16 @@ The _resource_ types to include when pulling data from Cloudinary.
 **Type:** String
 **Default:** `image`
 **Valid:** `image`, `raw` and `video`
-**Note:** Use the video resource type for all video resources as well as for audio files, such as .mp3.
+**Note:** Use the video resource type for all video and audio files, such as `.mp3` and `.mp4`.
 
 ### `type`
 
-The _storage_ types to include when pulling data from Cloudinary.
+The _storage_ types to include when pulling data from your Cloudinary account.
 
 **Type:** String
 **Default:** n/a
 **Valid:** `upload`, `private`, `authenticated`, `facebook`, `twitter`, `gplus`, `instagram_name`, `gravatar`, `youtube`, `hulu`, `vimeo`, `animoto`, `worldstarhiphop` and `dailymotion`
-**Note:** When non given, all types are sourced.
+**Note:** When not given, all types are sourced.
 
 ### `maxResults`
 
@@ -198,14 +198,14 @@ Max number of resources to return.
 
 ### `tags`
 
-If true, includes the list of tag names assigned to each resource.
+When `true`, includes the list of tag names assigned to each resource.
 
 **Type:** Boolean
 **Default:** `false`
 
 ### `prefix`
 
-Find all resources with a public ID that starts with the given prefix. The resources are sorted by public ID in the response.
+Find all resources with a public ID that starts with the given prefix sorted by public ID in the response.
 
 **Type:** String
 **Default:** n/a
@@ -213,19 +213,19 @@ Find all resources with a public ID that starts with the given prefix. The resou
 
 ### `context`
 
-Specifies if the context data for the image should be returned. This is useful for retrieving alt text or custom metadata in key:value pairs for an image set on Cloudinary.
+When `true`, includes the context data assigned to each resource. Helpful in retrieving alt text or custom metadata configured for the media file in Cloudinary.
 
 **Type:** String
 **Default:** n/a
 
 ## ⚠️ Gotchas
 
-- Gatsby pulls the data from Cloudinary when it builds; a rebuild is therefore needed whenever new media files are added to the Cloudinary account.
-- `f_auto` and `q_auto` Cloudinary transformations are applied automatically to the `secure_url` value. This optimizes the delivered media quality and format.
+- Gatsby pulls the data from Cloudinary when it builds; you need to trigger a rebuild whenever new media files are added to the Cloudinary account.
+- `f_auto` and `q_auto` Cloudinary transformations are applied automatically to the `secure_url` value optimizing the delivered media quality and format.
 
 ## 7. How to use 💅
 
-Run `gatsby develop` and all media assets configured in the plugin are now automagically 🌟 available as `cloudinaryMedia` and `allCloudinaryMedia` in graphQL.
+Run `gatsby develop`, and all media assets configured in the plugin are now automagically 🌟 available as `cloudinaryMedia` and `allCloudinaryMedia` in graphQL.
 
 These can run in a Page Query or StaticQuery.
 
@@ -269,4 +269,4 @@ const Images = () => {
 
 ## 🏴‍☠️ Contribute
 
-Want to contribute to making the plugin even better? Feel free to send in issues and pull requests on feature requests, fixes, bugs, typos, performance lapses, or any other challenge faced with using our plugin.
+Want to contribute to making the plugin even better? Feel free to send in issues and pull requests on feature requests, fixes, bugs, typos, performance lapses, or any other challenge faced using our plugin.
