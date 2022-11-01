@@ -47,10 +47,12 @@ module.exports = {
         cloudName: process.env.CLOUDINARY_CLOUD_NAME,
         apiKey: process.env.CLOUDINARY_API_KEY,
         apiSecret: process.env.CLOUDINARY_API_SECRET,
-        resourceType: `image`,
-        maxResults: 22,
-        // Adds your configured alt text
-        context: true,
+        // resourceType: `image`,
+        // type: `twitter`,
+        // maxResults: 22,
+        // tags: true,
+        // context: true,
+        // prefix: `demo/animals`
       },
     },
   ],
@@ -90,7 +92,7 @@ export const query = graphql`
 
 ## 🖼️ Use with Gatsby Image
 
-To use [`gatsby-plugin-image`](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) with your `CloudinaryMedia` nodes, you need the [`gatsby-transformer-cloudinary`](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/) to supply the `gatsbyImageData` resolver.
+To use [`gatsby-plugin-image`](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) with your `CloudinaryMedia` nodes, you need the [`gatsby-transformer-cloudinary`](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/) to add the `gatsbyImageData` resolver needed.
 
 ### Install Packages
 
@@ -115,14 +117,18 @@ module.exports = {
         cloudName: process.env.CLOUDINARY_CLOUD_NAME,
         apiKey: process.env.CLOUDINARY_API_KEY,
         apiSecret: process.env.CLOUDINARY_API_SECRET,
-        resourceType: `image`,
-        maxResults: 22,
+        // resourceType: `image`,
+        // type: `twitter`,
+        // maxResults: 22,
+        // tags: true,
+        // context: true,
+        // prefix: `demo/animals`
       },
     },
     {
       resolve: `gatsby-transformer-cloudinary`,
       options: {
-        // Attaches `gatsbyImageData` to `CloudinaryMedia`
+        // Add the `gatsbyImageData` resolver to `CloudinaryMedia`
         transformTypes: [`CloudinaryMedia`],
       },
     },
