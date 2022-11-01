@@ -1,3 +1,5 @@
+## [0.3.1](https://github.com/cloudinary-devs/gatsby-source-cloudinary/compare/v0.3.0...v0.3.1) (2022-11-01)
+
 # [0.3.0](https://github.com/cloudinary-devs/gatsby-source-cloudinary/compare/v0.2.0...v0.3.0) (2022-09-27)
 
 
