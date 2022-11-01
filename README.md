@@ -181,7 +181,7 @@ You'll find your Cloudinary account's `cloudName` in your [Cloudinary console](h
 
 **Type:** String
 **Default:** n/a
-**Note:** Store and retrieve your `cloudName` as an environment variable.
+**Note:** Store and retrieve your `cloudName` as [an environment variable read all about'em in the Gatsby docs](https://www.gatsbyjs.com/docs/how-to/local-development/environment-variables/).
 
 ### `apiKey` (required)
 
@@ -189,7 +189,7 @@ The API Key of your Cloudinary account. You'll find it in your [Cloudinary conso
 
 **Type:** String
 **Default:** n/a
-**Note:** Store and retrieve your `apiKey` as an environment variable.
+**Note:** Store and retrieve your `apiKey` as [an environment variable read all about'em in the Gatsby docs](https://www.gatsbyjs.com/docs/how-to/local-development/environment-variables/).
 
 ### `apiSecret` (required)
 
@@ -197,7 +197,7 @@ The API Secret of your Cloudinary account. You'll find it in your [Cloudinary co
 
 **Type:** String
 **Default:** n/a
-**Note:** Store and retrieve your `apiSecret` as an environment variable.
+**Note:** Store and retrieve your `apiSecret` as [an environment variable read all about'em in the Gatsby docs](https://www.gatsbyjs.com/docs/how-to/local-development/environment-variables/).
 
 ### `resourceType`
 
@@ -206,7 +206,7 @@ The _resource_ types to include when pulling data from Cloudinary.
 **Type:** String
 **Default:** `image`
 **Valid:** `image`, `raw` and `video`
-**Note:** Use the video`resourceType` for all video and audio files, such as `.mp3` and `.mp4`.
+**Note:** Use the video `resourceType` for all video and audio files, such as `.mp3` and `.mp4`.
 
 ### `type`
 
