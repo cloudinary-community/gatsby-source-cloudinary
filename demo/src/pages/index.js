@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
@@ -36,11 +36,12 @@ export default function IndexPage({ data }) {
         </tr>
 
         {data.allCloudinaryMedia.nodes.map((media) => {
-          const { secure_url } = media;
+          const { secure_url, context } = media;
           const example1Image = getImage(media.example1ImageData);
           const example2Image = getImage(media.example2ImageData);
           const example3Image = getImage(media.example3ImageData);
           const gatsbyImage = getImage(media);
+          const alt = context?.custom?.alt;
 
           return (
             <tr>
@@ -49,24 +50,24 @@ export default function IndexPage({ data }) {
                   width="300"
                   style={{ maxWidth: '100%', display: 'block' }}
                   src={secure_url}
-                  alt="no alt :("
+                  alt={alt}
                 />
               </td>
               <td>
                 <GatsbyImage
                   style={{ maxWidth: '100%' }}
                   image={example1Image}
-                  alt="no alt"
+                  alt={alt}
                 />
               </td>
               <td>
-                <GatsbyImage image={example2Image} alt="no alt" />
+                <GatsbyImage image={example2Image} alt={alt} />
               </td>
               <td>
-                <GatsbyImage image={example3Image} alt="no alt" />
+                <GatsbyImage image={example3Image} alt={alt} />
               </td>
               <td>
-                <GatsbyImage image={gatsbyImage} alt="no alt" />
+                <GatsbyImage image={gatsbyImage} alt={alt} />
               </td>
             </tr>
           );
@@ -103,6 +104,11 @@ export const query = graphql`
           chained: ["e_loop", "f_gif"]
           backgroundColor: "Lavender"
         )
+        context {
+          custom {
+            alt
+          }
+        }
       }
     }
   }
