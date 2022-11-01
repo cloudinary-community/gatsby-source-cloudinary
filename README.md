@@ -5,11 +5,24 @@ Pull data from your Cloudinary account into the Gatsby data layer with `gatsby-s
 - Compatible with [`gatsby-plugin-image`](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) when used in combination with [`gatsby-transformer-cloudinary`](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/).
 - To upload images already in the Gatsby data layer (such as local files) to Cloudinary use [`gatsby-transformer-cloudinary`](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/).
 
-&nbsp;
+## 📖 Table of Contents
+
+- [🚀 Getting Started](#🚀-getting-started)
+  - [Install Package](#install-package)
+  - [Configure Plugin](#configure-plugin)
+  - [Example usage](#example-usage)
+- [🖼️ Use with Gatsby Image](#🖼️-use-with-gatsby-image)
+  - [Install Packages](#install-packages)
+  - [Configure Plugins](#configure-plugins)
+  - [Example usage](#example-usage-1)
+- [🔌 Pugin Options](#🔌-plugin-options)
+- [⚠️ Gotchas](#⚠️-gotchas)
+- [📚 Other Resources](#📚-other-resources)
+- [🏴‍☠️ Contribute](#🏴‍☠️-contribute)
 
 ## 🚀 Getting Started
 
-### Install
+### Install Package
 
 ```bash
 npm install gatsby-source-cloudinary
@@ -21,7 +34,7 @@ or
 yarn add gatsby-source-cloudinary
 ```
 
-### Configure
+### Configure Plugin
 
 Add `gatsby-source-cloudinary` to the plugin array in your `gatsby-config.js` file.
 
@@ -75,11 +88,11 @@ export const query = graphql`
 
 &nbsp;
 
-## 🖼️ Usage with Gatsby Image
+## 🖼️ Use with Gatsby Image
 
 To use [`gatsby-plugin-image`](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) with your `CloudinaryMedia` nodes, you need the [`gatsby-transformer-cloudinary`](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/) to supply the `gatsbyImageData` resolver.
 
-### Install
+### Install Packages
 
 ```bash
 npm install --save gatsby-transformer-cloudinary gatsby-plugin-image
@@ -91,7 +104,7 @@ or
 yarn add --save gatsby-transformer-cloudinary gatsby-plugin-image
 ```
 
-### Configure
+### Configure Plugins
 
 ```js
 module.exports = {
@@ -151,7 +164,7 @@ export const query = graphql`
 
 &nbsp;
 
-## 🔌 Pugin Options
+## 🔌 Plugin Options
 
 ### `cloudName` (required)
 
