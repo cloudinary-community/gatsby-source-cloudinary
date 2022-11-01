@@ -5,6 +5,8 @@ Pull data from your Cloudinary account into the Gatsby data layer with `gatsby-s
 - Compatible with [`gatsby-plugin-image`](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) when used in combination with [`gatsby-transformer-cloudinary`](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/).
 - To upload images already in the Gatsby data layer (such as local files) to Cloudinary use [`gatsby-transformer-cloudinary`](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/).
 
+&nbsp;
+
 ## 📖 Table of Contents
 
 - [🚀 Getting Started](#🚀-getting-started)
@@ -19,6 +21,8 @@ Pull data from your Cloudinary account into the Gatsby data layer with `gatsby-s
 - [⚠️ Gotchas](#⚠️-gotchas)
 - [📚 Other Resources](#📚-other-resources)
 - [🏴‍☠️ Contribute](#🏴‍☠️-contribute)
+
+&nbsp;
 
 ## 🚀 Getting Started
 
