@@ -191,15 +191,15 @@ As soon as your Pull Request is merged, a new version of the plugin will be auto
 
 ### Improving The Documentation
 
-"How to use the plugin" is documented in the [readme](https://github.com/cloudinary-devs/gatsby-source-cloudinary/blob/main/README.md).
-"How to contribute" is covered in the [contributing file](https://github.com/cloudinary-devs/gatsby-source-cloudinary/blob/main/CONTRIBUTING.md).
+- "How to use the plugin" is documented in the [readme](https://github.com/cloudinary-devs/gatsby-source-cloudinary/blob/main/README.md).
+- "How to contribute" is covered in this document you are reading now.
 
 Improvements to both are very much encouraged.
 
 You may follow the guide for [Your First Code Contribution](#your-first-code-contribution) or make changes directly from Github.
 
 - [Edit the README.md](https://github.com/cloudinary-devs/gatsby-source-cloudinary/edit/main/README.md) directly on Github
-- [Edit the CONTRIBUTING.md](https://github.com/cloudinary-devs/gatsby-source-cloudinary/edit/main/CONTRIBUTING.md) directly on Github
+- [Edit the CONTRIBUTING.md](https://github.com/cloudinary-devs/gatsby-source-cloudinary/edit/main/CONTRIBUTING.md) (this document) directly on Github
 
 &nbsp;
 
