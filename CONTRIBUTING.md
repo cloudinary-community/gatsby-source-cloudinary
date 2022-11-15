@@ -6,21 +6,23 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 
 The community looks forward to your contributions. 🎉
 
-> And if you like the project but don't have time to contribute, that's fine. There are other easy ways to support the project and show your appreciation:
+> If you like the project but don't have time to contribute, that's fine. There are other easy ways to support the project and show your appreciation:
 >
 > - Star the project
-> - Tweet about it
+> - Tweet about it, make sure to tag [@cloudinary](https://twitter.com/cloudinary)
 > - Refer to the project in your project's readme
 > - Mention the project at local meetups and tell your friends/colleagues
-> - Create content about it, make sure to tag [@cloudinary](https://twitter.com/cloudinary) on Twitter
+> - Create content about it and let [@cloudinary](https://twitter.com/cloudinary) know on Twitter
 
-## What may you contribute?
+## What can you contribute?
 
-You may contribute to the [documentation](#improving-the-documentation), help [fellow users](#i-have-a-question), report [bugs](#reporting-bugs), suggest [enhancements](#suggesting-enhancements) and/or [contribute code](#your-first-code-contribution).
+You can contribute improvements to [documentation](#improving-the-documentation), help [fellow users](#i-have-a-question), report [bugs](#reporting-bugs), suggest [enhancements](#suggesting-enhancements) and/or [contribute code](#your-first-code-contribution).
 
 ## Why is your contribution so important to us?
 
 The Cloudinary Source Plugin should be easy to use, and your help is vital to get there 👊
+
+&nbsp;
 
 ## 📖 Table of Contents
 
@@ -33,6 +35,8 @@ The Cloudinary Source Plugin should be easy to use, and your help is vital to ge
   - [Improving The Documentation](#improving-the-documentation)
 - [Release Process](#release-process)
 - [Additional Notes](#additional-notes)
+
+&nbsp;
 
 ## Code of Conduct
 
@@ -51,6 +55,8 @@ We pledge to act and interact in ways that contribute to an open, welcoming, div
 For questions about this plugin's use, use the [discussion board](discussions).
 
 For questions about Cloudinary in general, you'll get faster results by asking in the [Cloudinary Community](https://community.cloudinary.com/).
+
+&nbsp;
 
 ## I Want To Contribute
 
@@ -186,6 +192,8 @@ You may follow the guide for [Your First Code Contribution](#your-first-code-con
 
 - [Edit the README.md](https://Github.com/cloudinary-devs/gatsby-source-cloudinary/edit/main/README.md) directly on Github
 - [Edit the CONTRIBUTING.md](https://Github.com/cloudinary-devs/gatsby-source-cloudinary/edit/main/CONTRIBUTING.md) directly on Github
+
+&nbsp;
 
 ## Release Process
 
