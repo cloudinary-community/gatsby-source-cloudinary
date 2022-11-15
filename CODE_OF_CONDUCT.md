@@ -1,7 +1,5 @@
 # Contributor Covenant Code of Conduct
 
-## 📖 Table of Contents
-
 - [Our Pledge](#our-pledge)
 - [Our Standards](#our-standards)
 - [Enforcement Responsibilities](#enforcement-responsibilities)
