@@ -180,71 +180,71 @@ export const query = graphql`
 
 You'll find your Cloudinary account's `cloudName` in your [Cloudinary console](https://cloudinary.com/console/).
 
-**Type:** String  
-**Default:** n/a  
+**Type:** String\
+**Default:** n/a\
 **Note:** Store and retrieve your `cloudName` as [an environment variable](https://www.gatsbyjs.com/docs/how-to/local-development/environment-variables/).
 
 ### `apiKey` (required)
 
 The API Key of your Cloudinary account. You'll find it in your [Cloudinary console](https://cloudinary.com/console/).
 
-**Type:** String  
-**Default:** n/a  
+**Type:** String\
+**Default:** n/a\
 **Note:** Store and retrieve your `apiKey` as [an environment variable](https://www.gatsbyjs.com/docs/how-to/local-development/environment-variables/).
 
 ### `apiSecret` (required)
 
 The API Secret of your Cloudinary account. You'll find it in your [Cloudinary console](https://cloudinary.com/console/).
 
-**Type:** String  
-**Default:** n/a  
+**Type:** String\
+**Default:** n/a\
 **Note:** Store and retrieve your `apiSecret` as [an environment variable](https://www.gatsbyjs.com/docs/how-to/local-development/environment-variables/).
 
 ### `resourceType`
 
 The _resource_ types to include when pulling data from Cloudinary.
 
-**Type:** String  
-**Default:** `image`  
-**Valid:** `image`, `raw` and `video`  
+**Type:** String\
+**Default:** `image`\
+**Valid:** `image`, `raw` and `video`\
 **Note:** Use the video `resourceType` for all video and audio files, such as `.mp3` and `.mp4`.
 
 ### `type`
 
 The _storage_ types to include when pulling data from your Cloudinary account.
 
-**Type:** String  
-**Default:** n/a  
-**Valid:** `upload`, `private`, `authenticated`, `facebook`, `twitter`, `gplus`, `instagram_name`, `gravatar`, `youtube`, `hulu`, `vimeo`, `animoto`, `worldstarhiphop` and `dailymotion`  
+**Type:** String\
+**Default:** n/a\
+**Valid:** `upload`, `private`, `authenticated`, `facebook`, `twitter`, `gplus`, `instagram_name`, `gravatar`, `youtube`, `hulu`, `vimeo`, `animoto`, `worldstarhiphop` and `dailymotion`\
 **Note:** When not given, all types are sourced.
 
 ### `maxResults`
 
 Max number of resources to return.
 
-**Type:** Integer  
+**Type:** Integer\
 **Default:** `10`
 
 ### `tags`
 
 When `true`, includes the list of tag names assigned to each resource.
 
-**Type:** Boolean  
+**Type:** Boolean\
 **Default:** `false`
 
 ### `prefix`
 
 Find all resources with a public ID that starts with the given `prefix` sorted by public ID in the response.
 
-**Type:** String  
-**Default:** n/a  
+**Type:** String\
+**Default:** n/a\
 **Note:** Can be used to source only media files from a specific folder. However, you will need to specify both `type` and `resourceType` in the config options.
 
 ### `context`
 
 When `true`, includes the context data assigned to each resource. Helpful in retrieving alt text or custom metadata configured for the media file in Cloudinary.
 
-**Type:** String  
+**Type:** String\
 **Default:** n/a
 
 &nbsp;

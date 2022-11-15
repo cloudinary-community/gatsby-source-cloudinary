@@ -18,10 +18,10 @@ The Cloudinary Source Plugin should be easy to use, and your help is vital to ge
 
 If you like the project but don't have time to contribute, that's perfectly okay. There are other easy ways to support the plugin and show your appreciation:
 
-⭐️ Star the repository on Github  
-🐦 Tweet about the plugin, and make sure to tag @cloudinary  
-👩‍💻 Create content about the plugin and let @cloudinary know on Twitter  
-✍️ Refer to the plugin in your project's readme  
+⭐️ Star the repository on Github\
+🐦 Tweet about the plugin, and make sure to tag @cloudinary\
+👩‍💻 Create content about the plugin and let @cloudinary know on Twitter\
+✍️ Refer to the plugin in your project's readme\
 👩‍🏫 Mention the plugin at local meetups and tell your friends/colleague
 
 &nbsp;
