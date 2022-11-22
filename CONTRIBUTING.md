@@ -1,26 +1,26 @@
-# Contributing to Our Gatsby Source Cloudinary Plugin
+# Contributing to Gatsby Source Cloudinary Plugin
 
-First off, thanks for taking the time to contribute! ❤️
+First off, thank you for your interest in helping with the plugin ❤️
 
-Our community looks forward to your contributions. 🎉
-help?
-## What can you contribute?
+Our community looks forward to your contributions 🎉
+
+## How can you help?
 
 You can improve [documentation](#improving-the-documentation), help [fellow users](#i-have-a-question), report [bugs](#reporting-bugs), suggest [enhancements](#suggesting-enhancements) or [contribute code](#your-first-code-contribution).
 
 ## Why do we need your help?
 
-As a user you know best how to make our Cloudinary Source Plugin better for users like you. 👊
+As a user, you know best how to make the Cloudinary Source Plugin better for users like you 👊
 
-## Other ways to support our plugin
+## Other ways to support the plugin
 
-If you like our plugin but don't have time to contribute, we have other easy ways to support our plugin:
+If you like the plugin but don't have time to contribute, there are other ways to support the plugin and show your appreciation:
 
-⭐️ Star our Github repository\
-🐦 Write a tweet and mention our plugin and tag @cloudinary\
-👩‍💻 Write some content and mention our plugin and let @cloudinary know on Twitter\
-✍️ Refer to our plugin in your project's readme\
-👩‍🏫 Mention our plugin when you attend local meetups and tell your friends and colleagues
+⭐️ Star the GitHub repository\
+🐦 Write a tweet and mention the plugin and tag @cloudinary\
+👩‍💻 Create content and let @cloudinary know on Twitter\
+✍️ Refer to the plugin in your project's readme\
+👩‍🏫 Mention the plugin when you attend local meetups and tell your friends and colleagues
 
 &nbsp;
 
@@ -40,100 +40,100 @@ If you like our plugin but don't have time to contribute, we have other easy way
 
 ## Code of Conduct
 
-To make people feel welcome, we as contributors pledge to not harass anybody for their body size, skill level, experience level, education, socio-economic status, visible or invisible disability, ethnicity, age, gender identity and expression, nationality, the way they look, race, caste, colour, religion, or sexual identity and orientation.
-
-We pledge to make our community open, welcoming, diverse, inclusive and healthy by the way we interact.
+> To make people feel welcome, we as contributors pledge to not harass anybody for their body size, skill level, experience level, education, socio-economic status, visible or invisible disability, ethnicity, age, gender identity and expression, nationality, the way they look, race, caste, colour, religion, or sexual identity and orientation.
+> We pledge to make our community open, welcoming, diverse, inclusive and healthy by the way we interact.
 
 [Read the complete code of conduct](https://github.com/cloudinary-devs/gatsby-source-cloudinary/blob/main/CODE_OF_CONDUCT.md).
 
-👉 Please tell community@cloudinary.com if you see abusive, harassing or other bad behavior.
+👉 Please report abusive, harassing, or otherwise unacceptable behavior to community@cloudinary.com.
 
 &nbsp;
 
 ## I Have a Question
 
-> If you have a question, we hope you have read the plugin's [readme](https://github.com/cloudinary-devs/gatsby-source-cloudinary/blob/main/README.md) and read the Cloudinary [Documentation](https://cloudinary.com/documentation).
+The guide for submitting a **question**. Following the guidelines helps us (maintainers and the community) to answer your question as fast as possible.
 
-Our [discussion board](discussions), a place you can ask how you use our plugin.
+### Before asking a question
 
-Our [Cloudinary Community](https://community.cloudinary.com/), a place you can ask how you use Cloudinary.
+Read the documentation. Both for the [plugin](https://github.com/cloudinary-devs/gatsby-source-cloudinary/blob/main/README.md) and [Cloudinary in general](https://cloudinary.com/documentation).
+Look through existing questions both on the plugin's discussion board](https://github.com/cloudinary-devs/gatsby-source-cloudinary/discussions) and in the [Cloudinary Community](https://community.cloudinary.com/).
+
+#### How Do I Submit a Good Question?
+
+- Start a [discussion](https://github.com/cloudinary-devs/gatsby-source-cloudinary/discussions) in the repo for plugin-specific questions or start a thread in the [Cloudinary Community](https://community.cloudinary.com/) for other Cloudinary questions.
+- Use a **clear and descriptive title** to identify your question.
+- **Describe your question** including as many details as you can.
+- If relevant **include screenshots and/or animated GIFs** to enhance the question.
 
 &nbsp;
 
 ## I Want To Contribute
 
-> ### Legal Notice
->
-> When contributing to our plugin, you also tell us you have authored 100% of the content and tell us you have the rights to the content and tell us the content you contribute may be provided under [the plugin's license](https://github.com/cloudinary-devs/gatsby-source-cloudinary/blob/main/LICENSE).
-
 ### Reporting Bugs
 
-Here we guide your **bug report** writing. If you follow our guidelines you will help maintainers and our contributers to understand your bug and help us fix your problem.
+The guide for submitting a **bug report**. Following the guidelines helps us (maintainers and the community) to understand the problem and come up with a fix.
 
 #### Before Submitting a Bug Report
 
 - Use the [latest version](https://github.com/cloudinary-devs/gatsby-source-cloudinary/releases).
-- Reread our [readme](https://github.com/cloudinary-devs/gatsby-source-cloudinary/blob/main/README.md) and for example configure your plugin thus fixing your bug.
-- Check our [bug tracker](https://github.com/cloudinary-devs/gatsby-source-cloudinary/issues?q=label%3Abug) and see if somebody already reported your bug or error.
-  -  If so, commenting on the existing issue is better than opening a new issue
+- Reread the [readme](https://github.com/cloudinary-devs/gatsby-source-cloudinary/blob/main/README.md) and review your plugin configuration to make sure it's correct.
+- Check the [bug tracker](https://github.com/cloudinary-devs/gatsby-source-cloudinary/issues?q=label%3Abug) and see if somebody has already reported your bug or error.
+  - If so, commenting on the existing issue is better than opening a new issue
 
-Read the ["I Have a Question"](#i-have-a-question) if you need help or support.
+Jump to ["I Have a Question"](#i-have-a-question) if you need help or support.
 
 #### How Do I Submit a Good Bug Report?
 
 We track bug reports as [Github issues](https://github.com/cloudinary-devs/issues).
 
 - Open an [Issue](https://github.com/cloudinary-devs/gatsby-source-cloudinary/issues/new).
-- **Use a clear title** explaining your problem.
-- Describe **step-by-step how we can reproduce your problem** include as many details as you can. Don't just say what you did, but explain how you did what you did.
+- **Use a clear and descriptive title** to identify the bug.
+- Describe **step-by-step** how to reproduce the bug. Include as many details as you can. Don't just say what you did, but explain how you did it.
 - **Describe the current behavior** and **explain the behavior you expected instead** and why.
-- **Provide an example showing the steps**. Include links to files, GitHub projects, or include copy/pasteable snippets, we can use when reproducing the bug.
+- If possible **provide an example** to reproduce the bug. Include links to files, GitHub projects, or include copy/pasteable snippets.
   - If you provide code snippets, use [Markdown code blocks](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-and-highlighting-code-blocks).
-- Please **include screenshots and animated GIFs** which help you show your steps. If you use the keyboard while following your steps, record the GIF with the Keybinding Resolver shown. You can use [Licecap](https://www.cockos.com/licecap/) when recording GIFs on macOS and Windows.
-- Do NOT include your Cloudinary API Secret or other secrets.
+- If relevant **include screenshots and/or animated GIFs** to enhance the bug report.
+
+⚠️ Do _not_ include your Cloudinary API Secret or other sensitive information.
 
 ### Suggesting Enhancements
-Here we guide your explaining of your **a new feature idea or your minor improvement idea**. If you follow our guidelines you will help our maintainers and our contributers to understand your idea and find related ideas.
+
+The guide for submitting an enhancement suggestion, both **new feature and minor improvement ideas**. Following the guidelines helps us (maintainers and the community) to understand your suggestion and follow up on it.
 
 #### Before Submitting an Enhancement
 
-- Use the latest version.
-- Reread our [readme](https://github.com/cloudinary-devs/gatsby-source-cloudinary/blob/main/README.md) and see if you can configure your plugin and get your new idea working.
-- Perform a [search](https://github.com/cloudinary-devs/gatsby-source-cloudinary/issues) and see if somebody already suggested your idea. If so, commenting on the existing issue is better than opening a new issue
+- Use the [latest version](https://github.com/cloudinary-devs/gatsby-source-cloudinary/releases).
+- Reread the [readme](https://github.com/cloudinary-devs/gatsby-source-cloudinary/blob/main/README.md). Maybe your idea is already possible with a different configuration?
+- Perform a [search](https://github.com/cloudinary-devs/gatsby-source-cloudinary/issues) and see if someone has already suggested your idea. If so, commenting on the existing issue is better than opening a new issue
 
 #### How Do I Submit a Good Enhancement Suggestion?
 
 We track enhancement ideas as [Github issues](https://github.com/cloudinary-devs/gatsby-source-cloudinary/issues).
 
 - Open an [Issue](https://github.com/cloudinary-devs/gatsby-source-cloudinary/issues/new).
-- Use a **clear title** explaining your new idea.
-- **Please describe your idea step-by-step** and include as many details as you can.
-- **Write an example showing your steps**. Include copy/pasteable snippets in your example, as [Markdown code blocks](https://help.github.com/articles/markdown-basics/#multiple-lines).
-- **Describe the current behavior** and **explain which behavior you would like instead** and why.
-- Please **include screenshots and animated GIFs** showing the steps or showing the part which your idea relates to. You can use [Licecap](https://www.cockos.com/licecap/) when recording GIFs on macOS and Windows.
-- **Explain why our users will need your idea**.
-- **Specify your plugin version**.
-- **Specify your Gatsby version.**
-
+- Use a **clear and descriptive title** to identify your idea.
+- **Describe your idea** including as many details as you can.
+- **Describe the current behavior** and **explain the behavior you would like instead** and why.
+- If relevant **include screenshots and/or animated GIFs** to enhance the description.
+- **Explain why your idea is useful** to most plugin users.
 
 ### Your Code Contribution
 
-Here we guide your code submission. If you follow these guidelines you
- will increase the chance of getting your code released.
+The guide for submitting your **code contribution**. Following the guidelines increase the chance of getting your code released.
 
-Some links to get you started contributing open source code:
+If you are new to open-source code contributions, start with these links:
 
 - [Set up Git](https://docs.Github.com/en/get-started/quickstart/set-up-git)
 - [Using pull requests when collaborating](https://docs.Github.com/en/Github/collaborating-with-pull-requests)
 
-Unsure where you can best start contributing code? Read these ["good first issues"](https://github.com/cloudinary-devs/gatsby-source-cloudinary/issues?q=is%3Aissue+is%3Aopen+label%3A"good+first+issue").
+Unsure where you can best start contributing code? Look through these ["good first issues"](https://github.com/cloudinary-devs/gatsby-source-cloudinary/issues?q=is%3Aissue+is%3Aopen+label%3A"good+first+issue").
 
 #### Before You Start Contributing
 
-- Adding a comment to an existing [issue](https://github.com/cloudinary-devs/gatsby-source-cloudinary/issues) indicates your interest.
-- Or create a new [issue](https://github.com/cloudinary-devs/gatsby-source-cloudinary/issues/new) describing what you'd like to contribute.
+- Add a comment to an existing [issue](https://github.com/cloudinary-devs/gatsby-source-cloudinary/issues) indicating your interest,
+- or create a new [issue](https://github.com/cloudinary-devs/gatsby-source-cloudinary/issues/new) describing what you'd like to contribute.
 
-Ask a maintainer if your idea is within our plugin's scope before spending too much time coding your solution.
+In both cases, outline your action plan and wait for feedback before spending too much time coding your solution in case your action plan is not within the scope/goals of this plugin.
 
 #### Fork, Clone, and Install
 
@@ -144,25 +144,21 @@ Ask a maintainer if your idea is within our plugin's scope before spending too m
 
 ##### A note on Yarn Workspaces
 
-Our plugin uses [Yarn Workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/) and hosts the plugin and demo code in one repository. You may manually test your changes while developing, because the included demo will use the plugin workspace plugin code not the one published to the NPM registry.
+The project uses [Yarn Workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/), hosting the plugin and demo code in one repository. You may manually test your changes while developing because the included demo will use the code in the plugin workspace (not the one published to the NPM registry).
 
 Install in the correct workspace by including `workspace plugin` or `workspace demo` in the command. Example: `yarn workspace plugin add lodash`.
 
 > Be careful when publishing packages in a workspace. If you are preparing your next release and you use a new dependency, but forgot to declare it in the package.json file, your tests might still pass locally if another package already downloaded that dependency into the workspace root. However, it will be broken for consumers that pull it from a registry, since the dependency list is now incomplete so they have no way to download the new dependency. Currently, this scenario will not let you throw a warning.
-
 > <cite>[Yarn Workspaces Docs](https://classic.yarnpkg.com/lang/en/docs/workspaces/)</cite>
 
 #### Develop
 
-Before you start coding:
-
-- Create a new branch and use your issue when naming the branch: `git checkout -b <your branch name>`.
-
-Even if most of your code contribute to the plugin, please remember updating the demo and adding tests when updating makes sense.
-
+- Create a new branch and use the issue number when naming your branch: `git checkout -b -<issue number>-<something descriptive>`.
 - Commit your changes often: `git commit -a -m <your message>`.
 
-You'll find the plugin code in the `plugin` folder, and the demo code in the `demo` folder.
+✨ Remember to update the demo and add tests when relevant. ✨
+
+You'll find the plugin code in the `plugin` folder and the demo code in the `demo` folder.
 
 - `yarn develop` runs the demo
 - `yarn watch` run the tests in watch mode
@@ -177,7 +173,7 @@ Before making a Pull Request, make sure you:
 - Update the **readme** describing your contribution.
 - The files have the **right format** run `yarn format`.
 
-Then you can:
+Then you may:
 
 - Create a [Pull Request](https://github.com/cloudinary-devs/gatsby-source-cloudinary/compare).
   - Select `base repository: cloudinary-devs/gatsby-source-cloudinary` > `base: main`
@@ -185,20 +181,22 @@ Then you can:
 - Write your title and description following the **[conventional commit](https://www.conventionalcommits.org/en/v1.0.0/)** standard.
   - If unsure, use a clear title, and a maintainer will help you follow the conventional commit standard
 
-- We will squash all your commits into one commit with the Pull Request title and description as the commit message.
+ℹ️ We will squash all your commits into one with the Pull Request title and description as the commit message, so do not worry about every single commit message being perfect.
 
 A maintainer will review your Pull Request in the style of [Conventional Comments](https://conventionalcomments.org/).
 
-- If we request changes, make those changes.
+- If changes are requested, make those changes.
 
-As soon as we merge your Pull Request, the new plugin version will [auto-release](#release-process).
+When a maintainer accepts and merges your Pull Request, a new version of the plugin is [auto-release](#release-process).
 
-### Improving Our Documentation
+### Improving The Documentation
 
-- We cover "how you use the plugin" in the [readme](https://github.com/cloudinary-devs/gatsby-source-cloudinary/blob/main/README.md).
-- The text you read now cover "how you contribute".
+There are two main documentation files:
 
-Please improve both this text and our readme.
+- The project [README.md](https://github.com/cloudinary-devs/gatsby-source-cloudinary/blob/main/README.md) = "How to use the plugin"
+- The project [CONTRIBUTING.md](https://github.com/cloudinary-devs/gatsby-source-cloudinary/blob/main/CONTRIBUTING.md) = "How to contribute to the plugin" = this text
+
+Improvements to both are very much encouraged 🙏
 
 You may follow the guide for [Your First Code Contribution](#your-first-code-contribution) or make changes directly from Github.
 
@@ -211,5 +209,8 @@ You may follow the guide for [Your First Code Contribution](#your-first-code-con
 
 Our plugin use [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) and [semantic versioning](https://semver.org/) to automate releases by using the [semantic-release](https://semantic-release.gitbook.io/).
 
+&nbsp;
+
 ## Credit
-We used **contributing-gen** while writing this text. [Make your own](https://github.com/bttger/contributing-gen)!
+
+This guide is based on the **contributing-gen**. [Make your own](https://github.com/bttger/contributing-gen)!
