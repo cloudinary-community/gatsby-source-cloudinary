@@ -187,7 +187,7 @@ A maintainer will review your Pull Request in the style of [Conventional Comment
 
 - If changes are requested, make those changes.
 
-When a maintainer accepts and merges your Pull Request, a new version of the plugin is [auto-release](#release-process).
+When a maintainer accepts and merges your Pull Request, a new version of the plugin is [auto-released](#release-process).
 
 ### Improving The Documentation
 
