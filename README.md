@@ -264,4 +264,6 @@ When `true`, includes the context data assigned to each resource. Helpful in ret
 
 ## 🏴‍☠️ Contribute
 
-Want to contribute to making the plugin even better? Feel free to send in issues and pull requests on feature requests, fixes, bugs, typos, performance lapses, or any other challenge faced using our plugin.
+You may improve the documentation, help fellow users, report bugs, suggest enhancements, contribute code and more.
+
+Get started by reading the [contribution docs](https://github.com/cloudinary-devs/gatsby-source-cloudinary/blob/main/CONTRIBUTING.md).
