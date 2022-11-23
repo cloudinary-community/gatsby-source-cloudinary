@@ -1,6 +1,6 @@
 const { newCloudinary, getResourceOptions } = require('./utils');
 
-const REPORTER_PREFIX = `gatsby-source-cloudinary`;
+const REPORTER_PREFIX = `gatsby-source-cloudinary-test`;
 const NODE_TYPE = `CloudinaryMedia`;
 
 exports.pluginOptionsSchema = ({ Joi }) => {

@@ -7,7 +7,7 @@ export default function IndexPage({ data }) {
     <main style={{ fontFamily: 'monospace', textAlign: 'center' }}>
       <h1>{data.site.siteMetadata.title}</h1>
 
-      <table>
+      <table style={{ margin: '0 auto' }}>
         <colgroup>
           <col style={{ width: '20%', backgroundColor: 'ghostwhite' }} />
           <col
