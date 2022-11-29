@@ -1,9 +1,13 @@
 # Gatsby Source Cloudinary
 
-Pull data from your Cloudinary account into the Gatsby data layer with `gatsby-source-cloudinary`. Creates a `CloudinaryMedia` node for each media file found.
+Pull data from your Cloudinary account into the Gatsby data layer with `gatsby-source-cloudinary`:
 
-- [`gatsby-plugin-image`](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) compatible when used with [`gatsby-transformer-cloudinary`](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/).
-- To upload images already in the Gatsby data layer (such as local files) to Cloudinary use [`gatsby-transformer-cloudinary`](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/).
+- 📥 Creates a `CloudinaryMedia` node for each media file found based on your configuration.
+
+Use together with [`gatsby-transformer-cloudinary`](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/) to:
+
+- 🖼️ Add [gatsby-plugin-image](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) support to the sourced `CloudinaryMedia` nodes.
+- 📤 Upload local images and remote images to [Cloudinary](https://cloudinary.com/) from within your Gatsby project.
 
 &nbsp;
 
@@ -13,10 +17,10 @@ Pull data from your Cloudinary account into the Gatsby data layer with `gatsby-s
   - [Install Package](#install-package)
   - [Configure Plugin](#configure-plugin)
   - [Example usage](#example-usage)
-- [🖼️ Use with Gatsby Image](#🖼️-use-with-gatsby-image)
+- [🖼️ Use with Gatsby Image](#🖼️-use-with-gatsby-plugin-image)
   - [Install Packages](#install-packages)
   - [Configure Plugins](#configure-plugins)
-  - [Example usage](#example-usage-1)
+  - [Example usage](#example-usage)
 - [🔌 Pugin Options](#🔌-plugin-options)
 - [⚠️ Gotchas](#⚠️-gotchas)
 - [📚 Other Resources](#📚-other-resources)
@@ -96,23 +100,25 @@ export const query = graphql`
 
 ## 🖼️ Use with Gatsby Plugin Image
 
-To use [`gatsby-plugin-image`](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) with your `CloudinaryMedia` nodes, you need the [`gatsby-transformer-cloudinary`](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/) to add the `gatsbyImageData` resolver needed.
+To add support for [`gatsby-plugin-image`](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) you'll need the [`gatsby-transformer-cloudinary`](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/) plugin.
 
 ### Install Packages
 
 ```bash
-npm install --save gatsby-transformer-cloudinary gatsby-plugin-image
+npm install gatsby-transformer-cloudinary gatsby-plugin-image
 ```
 
 or
 
 ```bash
-yarn add --save gatsby-transformer-cloudinary gatsby-plugin-image
+yarn add gatsby-transformer-cloudinary gatsby-plugin-image
 ```
 
 ### Configure Plugins
 
 ```js
+// File: ./gatsby-config.js
+
 module.exports = {
   plugins: [
     {
@@ -146,6 +152,8 @@ Check the [`gatsby-plugin-image` docs](https://www.gatsbyjs.com/plugins/gatsby-p
 ### Example usage
 
 ```jsx
+// File: ./pages/images.js
+
 import React from 'react';
 import { graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
