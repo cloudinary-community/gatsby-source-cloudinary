@@ -1,3 +1,10 @@
+# [0.4.0](https://github.com/cloudinary-devs/gatsby-source-cloudinary/compare/v0.3.2...v0.4.0) (2022-11-29)
+
+
+### Features
+
+* add Gatsby as a peer dependency ([#57](https://github.com/cloudinary-devs/gatsby-source-cloudinary/issues/57)) ([b438f7f](https://github.com/cloudinary-devs/gatsby-source-cloudinary/commit/b438f7f308ea90f859a671522d5c0d763d2a0efb))
+
 ## [0.3.2](https://github.com/cloudinary-devs/gatsby-source-cloudinary/compare/v0.3.1...v0.3.2) (2022-11-29)
 
 ## [0.3.1](https://github.com/cloudinary-devs/gatsby-source-cloudinary/compare/v0.3.0...v0.3.1) (2022-11-01)
