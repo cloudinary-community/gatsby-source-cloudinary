@@ -4281,10 +4281,22 @@ cloudinary-core@^2.10.2:
   resolved "https://registry.yarnpkg.com/cloudinary-core/-/cloudinary-core-2.13.0.tgz#b59f90871b6c708c3d0735b9be47ac08181c57fb"
   integrity sha512-Nt0Q5I2FtenmJghtC4YZ3MZZbGg1wLm84SsxcuVwZ83OyJqG9CNIGp86CiI6iDv3QobaqBUpOT7vg+HqY5HxEA==
 
-cloudinary@^1.30.0, cloudinary@^1.30.1:
+cloudinary@^1.30.1:
   version "1.32.0"
   resolved "https://registry.yarnpkg.com/cloudinary/-/cloudinary-1.32.0.tgz#13e16f8238aa8d49b61db16450590c802a79e21c"
   integrity sha512-hbc5/ilOkwD49+Lucqze3z+2Tejc3YdH4tkI+y1Ciabi9Qh9MYcy4M3rYeDAYiMS/jIz5FfHOzx+JjVnPJxNAQ==
+  dependencies:
+    cloudinary-core "^2.10.2"
+    core-js "^3.6.5"
+    lodash "^4.17.21"
+    q "^1.5.1"
+  optionalDependencies:
+    proxy-agent "^5.0.0"
+
+cloudinary@^1.35.0:
+  version "1.35.0"
+  resolved "https://registry.yarnpkg.com/cloudinary/-/cloudinary-1.35.0.tgz#37a061342fd5b810aa3165d68c2e6933f3d4829f"
+  integrity sha512-0aRLVOaVsoiqDCNkSzlPGR/oYOlE3AGrtwFTPx7xlZCPyKNzqeD9t9ENmPwzHn3yn/afAvy4h1sqb2yPyJOAow==
   dependencies:
     cloudinary-core "^2.10.2"
     core-js "^3.6.5"
@@ -6465,10 +6477,10 @@ gatsby-telemetry@^3.24.0:
     lodash "^4.17.21"
     node-fetch "^2.6.7"
 
-gatsby-transformer-cloudinary@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/gatsby-transformer-cloudinary/-/gatsby-transformer-cloudinary-3.0.0.tgz#15e42ba1ef76494843a99e7d0b68b7ecd17d2a29"
-  integrity sha512-1nqkVyFNmKt8tvx5gLKXhddr2JqoT+deh7u+om+0p2tbErj7u9/2XtsOU+uPZoYKK9OxfknQoXwU+bcfuj6Ieg==
+gatsby-transformer-cloudinary@^3.0.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/gatsby-transformer-cloudinary/-/gatsby-transformer-cloudinary-3.1.0.tgz#dc3f59d4cfe44d46ad798a8b272cf02ace062a8b"
+  integrity sha512-bQl/MgMb+lAARnChL54LsPMwBxwe77MX1x8w08cvy1AAbMhamTLb7wV9GvwteRb+UfTzgBNdOrU2ovXGszkX4A==
   dependencies:
     axios "^0.27.2"
     cloudinary "^1.30.1"

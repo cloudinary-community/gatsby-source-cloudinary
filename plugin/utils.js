@@ -38,7 +38,22 @@ const getResourceOptions = (options) => {
   return result;
 };
 
+const generateCloudinaryUrl = (
+  { cloud_name, public_id, resource_type },
+  { secure },
+) => {
+  const url = cloudinary.url(public_id, {
+    resource_type: resource_type,
+    cloud_name: cloud_name,
+    secure: secure,
+    transformation: { quality: 'auto', fetch_format: 'auto' },
+  });
+
+  return url;
+};
+
 module.exports = {
   newCloudinary,
   getResourceOptions,
+  generateCloudinaryUrl,
 };
