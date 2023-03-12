@@ -1,4 +1,8 @@
-const { newCloudinary, getResourceOptions } = require('./utils');
+const {
+  newCloudinary,
+  getResourceOptions,
+  generateCloudinaryUrl,
+} = require('./utils');
 
 const REPORTER_PREFIX = `gatsby-source-cloudinary`;
 const NODE_TYPE = `CloudinaryMedia`;
@@ -24,31 +28,39 @@ exports.pluginOptionsSchema = ({ Joi }) => {
 const getNodeData = (gatsbyUtils, media, cloudName) => {
   const { createNodeId, createContentDigest } = gatsbyUtils;
 
+  const url = generateCloudinaryUrl(media, {
+    secure: false,
+  });
+  const secureUrl = generateCloudinaryUrl(media, {
+    secure: true,
+  });
+
   return {
+    // Keep all original data around,
+    // keep for backwards compatability.
+    // Remove in favour of `cloudinaryData: media`,
+    // when next breaking change is released
     ...media,
+    // ID
     id: createNodeId(`cloudinary-media-${media.public_id}`),
+    // Needed by gatsby-transformer-cloudinary
+    cloudName: cloudName,
+    publicId: media.public_id,
     originalHeight: media.height,
     originalWidth: media.width,
     originalFormat: media.format,
-    cloudName: cloudName,
-    publicId: media.public_id,
+    // Keep all original data around
     cloudinaryData: media,
+    // Generated urls
+    url: url,
+    secure_url: secureUrl,
+    // Internal
     internal: {
       type: NODE_TYPE,
       content: JSON.stringify(media),
       contentDigest: createContentDigest(media),
     },
   };
-};
-
-const addTransformations = (resource, transformation, secure) => {
-  const splitURL = secure
-    ? resource.secure_url.split('/')
-    : resource.url.split('/');
-  splitURL.splice(6, 0, transformation);
-
-  const transformedURL = splitURL.join('/');
-  return transformedURL;
 };
 
 const createCloudinaryNodes = async (
@@ -73,15 +85,6 @@ const createCloudinaryNodes = async (
       });
 
       result.resources.forEach((resource) => {
-        const transformations = 'q_auto,f_auto'; // Default CL transformations, todo: fetch base transformations from config maybe.
-
-        resource.url = addTransformations(resource, transformations);
-        resource.secure_url = addTransformations(
-          resource,
-          transformations,
-          true,
-        );
-
         const nodeData = getNodeData(gatsbyUtils, resource, cloudName);
         actions.createNode(nodeData);
       });
