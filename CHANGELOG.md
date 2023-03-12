@@ -1,3 +1,10 @@
+# [0.5.0](https://github.com/cloudinary-devs/gatsby-source-cloudinary/compare/v0.4.0...v0.5.0) (2023-03-12)
+
+
+### Features
+
+* add analytics to generated urls ([#65](https://github.com/cloudinary-devs/gatsby-source-cloudinary/issues/65)) ([feaefba](https://github.com/cloudinary-devs/gatsby-source-cloudinary/commit/feaefbaeb75fe71dd351778a7619d099aa977757)), closes [#63](https://github.com/cloudinary-devs/gatsby-source-cloudinary/issues/63)
+
 # [0.4.0](https://github.com/cloudinary-devs/gatsby-source-cloudinary/compare/v0.3.2...v0.4.0) (2022-11-29)
 
 
