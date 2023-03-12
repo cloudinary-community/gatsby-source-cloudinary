@@ -36,7 +36,12 @@ const getNodeData = (gatsbyUtils, media, cloudName) => {
   });
 
   return {
+    // Keep all original data around,
+    // keep for backwards compatability.
+    // Remove in favour of `cloudinaryData: media`,
+    // when next breaking change is released
     ...media,
+    // ID
     id: createNodeId(`cloudinary-media-${media.public_id}`),
     // Needed by gatsby-transformer-cloudinary
     cloudName: cloudName,
@@ -46,11 +51,10 @@ const getNodeData = (gatsbyUtils, media, cloudName) => {
     originalFormat: media.format,
     // Keep all original data around
     cloudinaryData: media,
-    // Generate urls
+    // Generated urls
     url: url,
-    secureUrl: secureUrl,
-    // Keep backwards capabilities
     secure_url: secureUrl,
+    // Internal
     internal: {
       type: NODE_TYPE,
       content: JSON.stringify(media),
