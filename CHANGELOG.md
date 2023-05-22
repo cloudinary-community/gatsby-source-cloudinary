@@ -1,3 +1,10 @@
+## [0.5.1](https://github.com/cloudinary-devs/gatsby-source-cloudinary/compare/v0.5.0...v0.5.1) (2023-05-22)
+
+
+### Bug Fixes
+
+* use correct plugin package path ([#75](https://github.com/cloudinary-devs/gatsby-source-cloudinary/issues/75)) ([11398f5](https://github.com/cloudinary-devs/gatsby-source-cloudinary/commit/11398f5103270a70f9c39afc5f5ff8ee484d202f)), closes [#74](https://github.com/cloudinary-devs/gatsby-source-cloudinary/issues/74)
+
 # [0.5.0](https://github.com/cloudinary-devs/gatsby-source-cloudinary/compare/v0.4.0...v0.5.0) (2023-03-12)
 
 
