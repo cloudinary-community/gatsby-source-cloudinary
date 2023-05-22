@@ -1,7 +1,7 @@
 const cloudinary = require('cloudinary').v2;
 const { snakeCase } = require('lodash');
 
-const pluginPkg = require('../package.json');
+const pluginPkg = require('./package.json');
 const gatsbyPkg = require('gatsby/package.json');
 
 const SDK_CODE = 'X';
