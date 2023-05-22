@@ -1,4 +1,4 @@
-jest.mock('../package.json', () => ({
+jest.mock('./package.json', () => ({
   version: '0.1.6',
 }));
 jest.mock('gatsby/package.json', () => ({
