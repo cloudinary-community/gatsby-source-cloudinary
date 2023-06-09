@@ -4,7 +4,7 @@
   "description": "A simple demo of the gatsby-source-cloudinary plugin",
   "version": "0.1.0",
   "dependencies": {
-    "gatsby": "^4.14.1",
+    "gatsby": "^4.25.7",
     "gatsby-plugin-image": "2.23.1",
     "gatsby-source-cloudinary": "*",
     "gatsby-transformer-cloudinary": "^3.0.0",
