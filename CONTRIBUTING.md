@@ -6,7 +6,7 @@ Our community looks forward to your contributions 🎉
 
 ## How can you help?
 
-You can improve [documentation](#improving-the-documentation), help [fellow users](#i-have-a-question), report [bugs](#reporting-bugs), suggest [enhancements](#suggesting-enhancements) or [contribute code](#your-first-code-contribution).
+You can help make [documentation](#improving-the-documentation) clearer, help [fellow users](#i-have-a-question), report [bugs](#reporting-bugs), suggest [enhancements](#suggesting-enhancements) or [contribute code](#your-first-code-contribution).
 
 ## Why do we need your help?
 
