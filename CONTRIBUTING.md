@@ -213,4 +213,4 @@ Our plugin use [conventional commits](https://www.conventionalcommits.org/en/v1.
 
 ## Credit
 
-This guide is based on the **contributing-gen**. [Make your own](https://github.com/bttger/contributing-gen)!
+This guide is based on the **contributing-gen**. [Make your own](https://github.com/bttger/contributing-gen) CONTRIBUTING.md today!
