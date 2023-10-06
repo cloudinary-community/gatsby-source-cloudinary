@@ -20,6 +20,7 @@ module.exports = {
         context: true,
         maxResults: 10,
         prefix: process.env.CLOUDINARY_SOURCE_PREFIX,
+        secure: false,
       },
     },
     {

@@ -29,6 +29,7 @@ describe('pluginOptionsSchema', () => {
       tags: 'world',
       prefix: 800,
       context: '',
+      secure: 'not a boolean',
     };
 
     const { isValid, errors } = await testPluginOptionsSchema(
@@ -48,6 +49,7 @@ describe('pluginOptionsSchema', () => {
       `"tags" must be a boolean`,
       `"prefix" must be a string`,
       `"context" must be a boolean`,
+      `"secure" must be a boolean`,
     ]);
   });
 
@@ -66,6 +68,7 @@ describe('pluginOptionsSchema', () => {
       maxResults: 10,
       resultsPerPage: 10,
       tags: false,
+      secure: true,
     });
   });
 });

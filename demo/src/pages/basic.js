@@ -9,7 +9,7 @@ export default function BasicPage({ data }) {
           key={index}
           alt={media.context?.custom?.alt}
           width="200px"
-          src={media.secure_url}
+          src={media.url}
         />
       ))}
     </main>
@@ -20,7 +20,7 @@ export const query = graphql`
   query {
     allCloudinaryMedia {
       nodes {
-        secure_url
+        url
         context {
           custom {
             alt

@@ -36,7 +36,7 @@ export default function IndexPage({ data }) {
         </tr>
 
         {data.allCloudinaryMedia.nodes.map((media) => {
-          const { secure_url, context } = media;
+          const { url, context } = media;
           const example1Image = getImage(media.example1ImageData);
           const example2Image = getImage(media.example2ImageData);
           const example3Image = getImage(media.example3ImageData);
@@ -49,7 +49,7 @@ export default function IndexPage({ data }) {
                 <img
                   width="300"
                   style={{ maxWidth: '100%', display: 'block' }}
-                  src={secure_url}
+                  src={url}
                   alt={alt}
                 />
               </td>
@@ -86,7 +86,7 @@ export const query = graphql`
     }
     allCloudinaryMedia {
       nodes {
-        secure_url
+        url
         gatsbyImageData(width: 300, placeholder: BLURRED)
         example1ImageData: gatsbyImageData(
           width: 300
