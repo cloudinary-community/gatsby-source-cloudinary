@@ -79,7 +79,7 @@ export default function BasicPage({ data }) {
   return (
     <main>
       {data.allCloudinaryMedia.nodes.map((media, index) => (
-        <img key={index} width="200px" src={media.secure_url} />
+        <img key={index} width="200px" src={media.url} />
       ))}
     </main>
   );
@@ -89,7 +89,7 @@ export const query = graphql`
   query {
     allCloudinaryMedia {
       nodes {
-        secure_url
+        url
       }
     }
   }
@@ -252,15 +252,41 @@ Find all resources with a public ID that starts with the given `prefix` sorted b
 
 When `true`, includes the context data assigned to each resource. Helpful in retrieving alt text or custom metadata configured for the media file in Cloudinary.
 
+**Type:** Boolean\
+**Default:** n/a
+
+### `secure`
+
+Force HTTPS URLs for asset delivery even if they are embedded in non-secure HTTP pages. In most cases, it's recommended to keep this parameter as `true`.
+
+**Type:** Boolean\
+**Default:** true
+
+### `secureDistribution | cname`
+
+The custom domain name (CNAME) to use for building URLs.
+Relevant only for users on Advanced plan or higher that have a custom CNAME. For details, see Private CDNs and CNAMEs.
+
+Note: Use secureDistribution to specify your organization's CNAME whenever `secure` is true.
+
+(The legacy `cname` configuration parameter should be used only if `secure` is set to false.)
+
 **Type:** String\
 **Default:** n/a
+
+### `privateCdn`
+
+Set this parameter to true if you are an Advanced plan user with a private CDN distribution.
+
+**Type:** Boolean\
+**Default:** false
 
 &nbsp;
 
 ## ⚠️ Gotchas
 
 - Gatsby pulls the data from Cloudinary when it builds; you need to trigger a rebuild whenever new media files are added to the Cloudinary account.
-- `f_auto` and `q_auto` Cloudinary transformations are applied automatically to the `secure_url` value optimizing the delivered media quality and format.
+- `f_auto` and `q_auto` Cloudinary transformations are applied automatically to the `url` value optimizing the delivered media quality and format.
 
 &nbsp;
 
