@@ -23,14 +23,28 @@ exports.pluginOptionsSchema = ({ Joi }) => {
     prefix: Joi.string(),
     context: Joi.boolean(),
     secure: Joi.boolean().default(true),
+    cname: Joi.string(),
+    secureDistribution: Joi.string(),
+    privateCdn: Joi.boolean().default(false),
   });
 };
 
-const getNodeData = (gatsbyUtils, media, cloudName, secure) => {
+const getNodeData = (
+  gatsbyUtils,
+  media,
+  cloudName,
+  secure,
+  cname,
+  secureDistribution,
+  privateCdn,
+) => {
   const { createNodeId, createContentDigest } = gatsbyUtils;
 
   const url = generateCloudinaryUrl(media, {
     secure: secure,
+    cname: cname,
+    secure_distribution: secureDistribution,
+    private_cdn: privateCdn,
   });
 
   return {
@@ -66,6 +80,9 @@ const createCloudinaryNodes = async (
   resourceOptions,
   cloudName,
   secure,
+  cname,
+  secureDistribution,
+  privateCdn,
 ) => {
   const { actions, reporter } = gatsbyUtils;
   const { max_results, results_per_page } = resourceOptions;
@@ -83,7 +100,15 @@ const createCloudinaryNodes = async (
       });
 
       result.resources.forEach((resource) => {
-        const nodeData = getNodeData(gatsbyUtils, resource, cloudName, secure);
+        const nodeData = getNodeData(
+          gatsbyUtils,
+          resource,
+          cloudName,
+          secure,
+          cname,
+          secureDistribution,
+          privateCdn,
+        );
         actions.createNode(nodeData);
       });
 
@@ -109,7 +134,8 @@ const createCloudinaryNodes = async (
 };
 
 exports.sourceNodes = async (gatsbyUtils, pluginOptions) => {
-  const { cloudName, secure } = pluginOptions;
+  const { cloudName, secure, cname, secureDistribution, privateCdn } =
+    pluginOptions;
   const cloudinary = newCloudinary(pluginOptions);
   const resourceOptions = getResourceOptions(pluginOptions);
 
@@ -119,5 +145,8 @@ exports.sourceNodes = async (gatsbyUtils, pluginOptions) => {
     resourceOptions,
     cloudName,
     secure,
+    cname,
+    secureDistribution,
+    privateCdn,
   );
 };

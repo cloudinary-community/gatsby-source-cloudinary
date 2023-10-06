@@ -47,7 +47,7 @@ const getResourceOptions = (options) => {
 
 const generateCloudinaryUrl = (
   { cloud_name, public_id, resource_type },
-  { secure },
+  { secure, cname, secure_distribution, private_cdn },
 ) => {
   const url = cloudinary.url(public_id, {
     resource_type: resource_type,
@@ -58,6 +58,9 @@ const generateCloudinaryUrl = (
     sdkCode: SDK_CODE,
     sdkSemver: SDK_SEMVER,
     techVersion: TECH_VERSION,
+    cname: cname,
+    secure_distribution: secure_distribution,
+    private_cdn: private_cdn,
   });
 
   return url;

@@ -30,6 +30,9 @@ describe('pluginOptionsSchema', () => {
       prefix: 800,
       context: '',
       secure: 'not a boolean',
+      cname: 2,
+      secureDistribution: 3,
+      privateCdn: 'not a boolean',
     };
 
     const { isValid, errors } = await testPluginOptionsSchema(
@@ -50,6 +53,9 @@ describe('pluginOptionsSchema', () => {
       `"prefix" must be a string`,
       `"context" must be a boolean`,
       `"secure" must be a boolean`,
+      `"cname" must be a string`,
+      `"secureDistribution" must be a string`,
+      `"privateCdn" must be a boolean`,
     ]);
   });
 
@@ -69,6 +75,7 @@ describe('pluginOptionsSchema', () => {
       resultsPerPage: 10,
       tags: false,
       secure: true,
+      privateCdn: false,
     });
   });
 });
