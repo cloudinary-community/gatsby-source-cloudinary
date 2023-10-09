@@ -89,7 +89,8 @@ export const query = graphql`
   query {
     allCloudinaryMedia {
       nodes {
-        url
+        secure_url
+        # url - if using secure: false
       }
     }
   }
@@ -259,6 +260,8 @@ When `true`, includes the context data assigned to each resource. Helpful in ret
 
 Force HTTPS URLs for asset delivery even if they are embedded in non-secure HTTP pages. In most cases, it's recommended to keep this parameter as `true`.
 
+When using `true`, URLs will be returned using `secure_url` following Cloudinary's resource response, otherwise, will be returned as `url`.
+
 **Type:** Boolean\
 **Default:** true
 
@@ -286,7 +289,7 @@ Set this parameter to true if you are an Advanced plan user with a private CDN d
 ## ⚠️ Gotchas
 
 - Gatsby pulls the data from Cloudinary when it builds; you need to trigger a rebuild whenever new media files are added to the Cloudinary account.
-- `f_auto` and `q_auto` Cloudinary transformations are applied automatically to the `url` value optimizing the delivered media quality and format.
+- `f_auto` and `q_auto` Cloudinary transformations are applied automatically to the `secure_url` or `url` value optimizing the delivered media quality and format.
 
 &nbsp;
 

@@ -33,15 +33,27 @@ const getNodeData = (
   gatsbyUtils,
   media,
   cloudName,
-  secure,
   cname,
   secureDistribution,
   privateCdn,
 ) => {
   const { createNodeId, createContentDigest } = gatsbyUtils;
 
+  // When Cloudinary returns a resource via the API, they return both
+  // a secure_url and a url, with the url including `http://`. We want
+  // to extend this option to what we return so that the developer
+  // can have the option of using the URL they prefer for their
+  // specific use case along with any transformations
+
   const url = generateCloudinaryUrl(media, {
-    secure: secure,
+    secure: false,
+    cname: cname,
+    secure_distribution: secureDistribution,
+    private_cdn: privateCdn,
+  });
+
+  const secureUrl = generateCloudinaryUrl(media, {
+    secure: true,
     cname: cname,
     secure_distribution: secureDistribution,
     private_cdn: privateCdn,
@@ -63,8 +75,9 @@ const getNodeData = (
     originalFormat: media.format,
     // Keep all original data around
     cloudinaryData: media,
-    // Generated url
+    // Generated urls
     url: url,
+    secure_url: secureUrl,
     // Internal
     internal: {
       type: NODE_TYPE,
@@ -79,7 +92,6 @@ const createCloudinaryNodes = async (
   cloudinary,
   resourceOptions,
   cloudName,
-  secure,
   cname,
   secureDistribution,
   privateCdn,
@@ -104,7 +116,6 @@ const createCloudinaryNodes = async (
           gatsbyUtils,
           resource,
           cloudName,
-          secure,
           cname,
           secureDistribution,
           privateCdn,
