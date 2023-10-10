@@ -29,7 +29,6 @@ describe('pluginOptionsSchema', () => {
       tags: 'world',
       prefix: 800,
       context: '',
-      secure: 'not a boolean',
       cname: 2,
       secureDistribution: 3,
       privateCdn: 'not a boolean',
@@ -52,7 +51,6 @@ describe('pluginOptionsSchema', () => {
       `"tags" must be a boolean`,
       `"prefix" must be a string`,
       `"context" must be a boolean`,
-      `"secure" must be a boolean`,
       `"cname" must be a string`,
       `"secureDistribution" must be a string`,
       `"privateCdn" must be a boolean`,
@@ -74,7 +72,6 @@ describe('pluginOptionsSchema', () => {
       maxResults: 10,
       resultsPerPage: 10,
       tags: false,
-      secure: true,
       privateCdn: false,
     });
   });

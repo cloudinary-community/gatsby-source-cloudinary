@@ -22,7 +22,6 @@ exports.pluginOptionsSchema = ({ Joi }) => {
     tags: Joi.boolean().default(false),
     prefix: Joi.string(),
     context: Joi.boolean(),
-    secure: Joi.boolean().default(true),
     cname: Joi.string(),
     secureDistribution: Joi.string(),
     privateCdn: Joi.boolean().default(false),
@@ -145,7 +144,7 @@ const createCloudinaryNodes = async (
 };
 
 exports.sourceNodes = async (gatsbyUtils, pluginOptions) => {
-  const { cloudName, secure, cname, secureDistribution, privateCdn } =
+  const { cloudName, cname, secureDistribution, privateCdn } =
     pluginOptions;
   const cloudinary = newCloudinary(pluginOptions);
   const resourceOptions = getResourceOptions(pluginOptions);
@@ -155,7 +154,6 @@ exports.sourceNodes = async (gatsbyUtils, pluginOptions) => {
     cloudinary,
     resourceOptions,
     cloudName,
-    secure,
     cname,
     secureDistribution,
     privateCdn,
