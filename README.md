@@ -79,7 +79,7 @@ export default function BasicPage({ data }) {
   return (
     <main>
       {data.allCloudinaryMedia.nodes.map((media, index) => (
-        <img key={index} width="200px" src={media.url} />
+        <img key={index} width="200px" src={media.secure_url} />
       ))}
     </main>
   );
@@ -89,8 +89,8 @@ export const query = graphql`
   query {
     allCloudinaryMedia {
       nodes {
-        secure_url
-        # url - if using secure: false
+        secure_url # https version of the url
+        # url - http version of the url
       }
     }
   }
@@ -256,30 +256,27 @@ When `true`, includes the context data assigned to each resource. Helpful in ret
 **Type:** Boolean\
 **Default:** n/a
 
-### `secure`
+### `secureDistribution`
 
-Force HTTPS URLs for asset delivery even if they are embedded in non-secure HTTP pages. In most cases, it's recommended to keep this parameter as `true`.
+The custom domain name (CNAME) to use for building secure URLs (`https`).
 
-When using `true`, URLs will be returned using `secure_url` following Cloudinary's resource response, otherwise, will be returned as `url`.
-
-**Type:** Boolean\
-**Default:** true
-
-### `secureDistribution | cname`
-
-The custom domain name (CNAME) to use for building URLs.
 Relevant only for users on Advanced plan or higher that have a custom CNAME. For details, see Private CDNs and CNAMEs.
 
-Note: Use secureDistribution to specify your organization's CNAME whenever `secure` is true.
+**Type:** String\
+**Default:** n/a
 
-(The legacy `cname` configuration parameter should be used only if `secure` is set to false.)
+### `cname`
+
+The custom domain name (CNAME) to use for building non-secure URLs (`http`).
+
+Relevant only for users on Advanced plan or higher that have a custom CNAME. For details, see Private CDNs and CNAMEs.
 
 **Type:** String\
 **Default:** n/a
 
 ### `privateCdn`
 
-Set this parameter to true if you are an Advanced plan user with a private CDN distribution.
+Set this parameter to true if you are on an Advanced plan user with a private CDN distribution.
 
 **Type:** Boolean\
 **Default:** false
@@ -289,7 +286,8 @@ Set this parameter to true if you are an Advanced plan user with a private CDN d
 ## ⚠️ Gotchas
 
 - Gatsby pulls the data from Cloudinary when it builds; you need to trigger a rebuild whenever new media files are added to the Cloudinary account.
-- `f_auto` and `q_auto` Cloudinary transformations are applied automatically to the `secure_url` or `url` value optimizing the delivered media quality and format.
+- `f_auto` and `q_auto` Cloudinary transformations are applied automatically to the `secure_url` and `url` value optimizing the delivered media quality and format.
+- If you use this plugin together wih [`gatsby-transformer-cloudinary`](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/) the secureDistribution, cname and privateCdn options do not carry over, and as of now there is no way to set them in that plugin.
 
 &nbsp;
 
