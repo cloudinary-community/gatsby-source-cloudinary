@@ -1,3 +1,10 @@
+# [0.6.0](https://github.com/cloudinary-devs/gatsby-source-cloudinary/compare/v0.5.1...v0.6.0) (2023-10-14)
+
+
+### Features
+
+* add cname, secureDistribution and privateCdn plugin options [#82](https://github.com/cloudinary-devs/gatsby-source-cloudinary/issues/82) ([#83](https://github.com/cloudinary-devs/gatsby-source-cloudinary/issues/83)) ([b6d2fca](https://github.com/cloudinary-devs/gatsby-source-cloudinary/commit/b6d2fca99effbb16017f032dfd79ebca8f0649a0))
+
 ## [0.5.1](https://github.com/cloudinary-devs/gatsby-source-cloudinary/compare/v0.5.0...v0.5.1) (2023-05-22)
 
 
