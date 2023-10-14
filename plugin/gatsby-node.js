@@ -22,17 +22,40 @@ exports.pluginOptionsSchema = ({ Joi }) => {
     tags: Joi.boolean().default(false),
     prefix: Joi.string(),
     context: Joi.boolean(),
+    cname: Joi.string(),
+    secureDistribution: Joi.string(),
+    privateCdn: Joi.boolean().default(false),
   });
 };
 
-const getNodeData = (gatsbyUtils, media, cloudName) => {
+const getNodeData = (
+  gatsbyUtils,
+  media,
+  cloudName,
+  cname,
+  secureDistribution,
+  privateCdn,
+) => {
   const { createNodeId, createContentDigest } = gatsbyUtils;
+
+  // When Cloudinary returns a resource via the API, they return both
+  // a secure_url and a url, with the url including `http://`. We want
+  // to extend this option to what we return so that the developer
+  // can have the option of using the URL they prefer for their
+  // specific use case along with any transformations
 
   const url = generateCloudinaryUrl(media, {
     secure: false,
+    cname: cname,
+    secure_distribution: secureDistribution,
+    private_cdn: privateCdn,
   });
+
   const secureUrl = generateCloudinaryUrl(media, {
     secure: true,
+    cname: cname,
+    secure_distribution: secureDistribution,
+    private_cdn: privateCdn,
   });
 
   return {
@@ -68,6 +91,9 @@ const createCloudinaryNodes = async (
   cloudinary,
   resourceOptions,
   cloudName,
+  cname,
+  secureDistribution,
+  privateCdn,
 ) => {
   const { actions, reporter } = gatsbyUtils;
   const { max_results, results_per_page } = resourceOptions;
@@ -85,7 +111,14 @@ const createCloudinaryNodes = async (
       });
 
       result.resources.forEach((resource) => {
-        const nodeData = getNodeData(gatsbyUtils, resource, cloudName);
+        const nodeData = getNodeData(
+          gatsbyUtils,
+          resource,
+          cloudName,
+          cname,
+          secureDistribution,
+          privateCdn,
+        );
         actions.createNode(nodeData);
       });
 
@@ -111,7 +144,8 @@ const createCloudinaryNodes = async (
 };
 
 exports.sourceNodes = async (gatsbyUtils, pluginOptions) => {
-  const { cloudName } = pluginOptions;
+  const { cloudName, cname, secureDistribution, privateCdn } =
+    pluginOptions;
   const cloudinary = newCloudinary(pluginOptions);
   const resourceOptions = getResourceOptions(pluginOptions);
 
@@ -120,5 +154,8 @@ exports.sourceNodes = async (gatsbyUtils, pluginOptions) => {
     cloudinary,
     resourceOptions,
     cloudName,
+    cname,
+    secureDistribution,
+    privateCdn,
   );
 };

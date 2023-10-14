@@ -89,7 +89,8 @@ export const query = graphql`
   query {
     allCloudinaryMedia {
       nodes {
-        secure_url
+        secure_url # https version of the url
+        # url - http version of the url
       }
     }
   }
@@ -252,15 +253,41 @@ Find all resources with a public ID that starts with the given `prefix` sorted b
 
 When `true`, includes the context data assigned to each resource. Helpful in retrieving alt text or custom metadata configured for the media file in Cloudinary.
 
+**Type:** Boolean\
+**Default:** n/a
+
+### `secureDistribution`
+
+The custom domain name (CNAME) to use for building secure URLs (`https`).
+
+Relevant only for users on Advanced plan or higher that have a custom CNAME. For details, see Private CDNs and CNAMEs.
+
 **Type:** String\
 **Default:** n/a
+
+### `cname`
+
+The custom domain name (CNAME) to use for building non-secure URLs (`http`).
+
+Relevant only for users on Advanced plan or higher that have a custom CNAME. For details, see Private CDNs and CNAMEs.
+
+**Type:** String\
+**Default:** n/a
+
+### `privateCdn`
+
+Set this parameter to true if you are on an Advanced plan user with a private CDN distribution.
+
+**Type:** Boolean\
+**Default:** false
 
 &nbsp;
 
 ## ⚠️ Gotchas
 
 - Gatsby pulls the data from Cloudinary when it builds; you need to trigger a rebuild whenever new media files are added to the Cloudinary account.
-- `f_auto` and `q_auto` Cloudinary transformations are applied automatically to the `secure_url` value optimizing the delivered media quality and format.
+- `f_auto` and `q_auto` Cloudinary transformations are applied automatically to the `secure_url` and `url` value optimizing the delivered media quality and format.
+- If you use this plugin together wih [`gatsby-transformer-cloudinary`](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/) the secureDistribution, cname and privateCdn options do not carry over, and as of now there is no way to set them in that plugin.
 
 &nbsp;
 
