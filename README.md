@@ -9,7 +9,7 @@ Use together with [`gatsby-transformer-cloudinary`](https://www.gatsbyjs.com/plu
 - 🖼️ Add [gatsby-plugin-image](https://www.gatsbyjs.com/plugins/gatsby-plugin-image/) support to the sourced `CloudinaryMedia` nodes.
 - 📤 Upload local images and remote images to [Cloudinary](https://cloudinary.com/) from within your Gatsby project.
 
-&nbsp;
+**This is a community library supported by the Cloudinary Developer Experience team.**
 
 ## 📖 Table of Contents
 
