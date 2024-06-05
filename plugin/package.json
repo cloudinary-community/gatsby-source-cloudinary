@@ -1,6 +1,6 @@
 {
   "name": "gatsby-source-cloudinary",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Gatsby source plugin to fetch files from Cloudinary into Gatsby.",
   "main": "gatsby-node.js",
   "repository": "https://github.com/cloudinary-devs/gatsby-source-cloudinary",
