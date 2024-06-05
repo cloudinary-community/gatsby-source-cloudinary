@@ -260,7 +260,7 @@ When `true`, includes the context data assigned to each resource. Helpful in ret
 
 The custom domain name (CNAME) to use for building secure URLs (`https`).
 
-Relevant only for users on Advanced plan or higher that have a custom CNAME. For details, see Private CDNs and CNAMEs.
+Relevant only for users on Advanced plan or higher that have a custom CNAME. For details, see [Private CDNs and CNAMEs](https://cloudinary.com/documentation/advanced_url_delivery_options#private_cdns_and_cnames).
 
 **Type:** String\
 **Default:** n/a
@@ -269,14 +269,14 @@ Relevant only for users on Advanced plan or higher that have a custom CNAME. For
 
 The custom domain name (CNAME) to use for building non-secure URLs (`http`).
 
-Relevant only for users on Advanced plan or higher that have a custom CNAME. For details, see Private CDNs and CNAMEs.
+Relevant only for users on Advanced plan or higher that have a custom CNAME. For details, see [Private CDNs and CNAMEs](https://cloudinary.com/documentation/advanced_url_delivery_options#private_cdns_and_cnames).
 
 **Type:** String\
 **Default:** n/a
 
 ### `privateCdn`
 
-Set this parameter to true if you are on an Advanced plan user with a private CDN distribution.
+Relevant only for users on Advanced plan or higher that have private CDN distribution. For details, see [Private CDNs and CNAMEs](https://cloudinary.com/documentation/advanced_url_delivery_options#private_cdns_and_cnames).
 
 **Type:** Boolean\
 **Default:** false
