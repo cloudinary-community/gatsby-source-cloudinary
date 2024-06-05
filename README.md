@@ -260,7 +260,7 @@ When `true`, includes the context data assigned to each resource. Helpful in ret
 
 The custom domain name (CNAME) to use for building secure URLs (`https`).
 
-Relevant only for users on Advanced plan or higher that have a custom CNAME. For details, see [Private CDNs and CNAMEs](https://cloudinary.com/documentation/advanced_url_delivery_options#private_cdns_and_cnames).
+Relevant only for users on the Advanced plan or higher that have a custom CNAME. For details, see [Private CDNs and CNAMEs](https://cloudinary.com/documentation/advanced_url_delivery_options#private_cdns_and_cnames).
 
 **Type:** String\
 **Default:** n/a
@@ -269,14 +269,14 @@ Relevant only for users on Advanced plan or higher that have a custom CNAME. For
 
 The custom domain name (CNAME) to use for building non-secure URLs (`http`).
 
-Relevant only for users on Advanced plan or higher that have a custom CNAME. For details, see [Private CDNs and CNAMEs](https://cloudinary.com/documentation/advanced_url_delivery_options#private_cdns_and_cnames).
+Relevant only for users on the Advanced plan or higher that have a custom CNAME. For details, see [Private CDNs and CNAMEs](https://cloudinary.com/documentation/advanced_url_delivery_options#private_cdns_and_cnames).
 
 **Type:** String\
 **Default:** n/a
 
 ### `privateCdn`
 
-Relevant only for users on Advanced plan or higher that have private CDN distribution. For details, see [Private CDNs and CNAMEs](https://cloudinary.com/documentation/advanced_url_delivery_options#private_cdns_and_cnames).
+Relevant only for users on the Advanced plan or higher that have private CDN distribution. For details, see [Private CDNs and CNAMEs](https://cloudinary.com/documentation/advanced_url_delivery_options#private_cdns_and_cnames).
 
 **Type:** Boolean\
 **Default:** false
@@ -287,7 +287,7 @@ Relevant only for users on Advanced plan or higher that have private CDN distrib
 
 - Gatsby pulls the data from Cloudinary when it builds; you need to trigger a rebuild whenever new media files are added to the Cloudinary account.
 - `f_auto` and `q_auto` Cloudinary transformations are applied automatically to the `secure_url` and `url` value optimizing the delivered media quality and format.
-- If you use this plugin together wih [`gatsby-transformer-cloudinary`](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/) the secureDistribution, cname and privateCdn options do not carry over, and as of now there is no way to set them in that plugin.
+- If you use this plugin together with [`gatsby-transformer-cloudinary`](https://www.gatsbyjs.com/plugins/gatsby-transformer-cloudinary/) the secureDistribution, cname and privateCdn options do not carry over, and there is no way to set them in that plugin.
 
 &nbsp;
 
